@@ -8,10 +8,11 @@
   let editWishlist = () =>
     gotoRoute(`/wishlists/${data.wishlist.wishlist.id}/edit`);
   let share = () => {
-    window.Telegram.WebApp.switchInlineQuery("my", [
+    window.Telegram.WebApp.switchInlineQuery(data.wishlist.wishlist.id, [
       "users",
       "groups",
       "channels",
+      "bots",
     ]);
   };
   let copyLink = () => {

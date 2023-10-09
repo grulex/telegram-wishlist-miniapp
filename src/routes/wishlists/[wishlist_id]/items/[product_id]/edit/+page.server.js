@@ -10,27 +10,18 @@ export const actions = {
         let wishlist_id = data.get('wishlist_id')
         let product_id = data.get('product_id')
         let title = data.get('title')
-        let price_from = data.get('price_from')
-        let price_to = data.get('price_to')
+        let price = data.get('price_from')
         let url = data.get('url')
         let description = data.get('description')
         let is_booking_available = data.get('is_booking_available') === "on"
 
-        if (price_from !== '') {
-            price_from = {
-                number: price_from,
+        if (price !== '') {
+            price = {
+                number: price,
                 currency: 'USD',
             }
         } else {
-            price_from = null
-        }
-        if (price_to !== '') {
-            price_to = {
-                number: price_to,
-                currency: 'USD',
-            }
-        } else {
-            price_to = null
+            price = null
         }
 
         let jsonRequest = {
@@ -38,8 +29,7 @@ export const actions = {
             product: {
                 id: product_id,
                 title: title,
-                price_from: price_from,
-                price_to: price_to,
+                price_from: price,
                 url: url,
                 description: description,
             },
