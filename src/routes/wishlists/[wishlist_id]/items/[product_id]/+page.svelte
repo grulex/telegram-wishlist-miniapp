@@ -23,8 +23,23 @@
         }
     })
 
+    const remove = () => {
+        fetch('', {method: 'DELETE'}).then(() => {console.log("OK")})
+    }
+    const book = () => {
+        fetch('', {method: 'POST', body: JSON.stringify({action:"book"})}).then(() => {console.log("OK")})
+    }
+    const unbook = () => {
+        fetch('', {method: 'POST', body: JSON.stringify({action:"unbook"})}).then(() => {console.log("OK")})
+    }
+    const copyToMyWishlist = () => {
+        fetch('', {method: 'POST', body: JSON.stringify({action:"copy"})}).then(() => {console.log("OK")})
+    }
+
     let item = data.itemsByProductId[data.productId];
     let product = item.product;
+    let isOwner = data.wishlist.wishlist.is_my_wishlist;
+
 </script>
 
 <h1>{product.title}</h1>
@@ -33,3 +48,13 @@
 <p>Description:</p>
 <p>{product.description}</p>
 <p>Booking {item.is_booking_available ? "is available" : "is not available"}</p>
+
+
+
+{#if isOwner }
+    <button on:click={remove}>Remove</button>
+{:else}
+    <button on:click={book}>Book!</button>
+    <button on:click={unbook}>Unbook</button>
+    <button on:click={copyToMyWishlist}>Copy to my Wishlist</button>
+{/if}
