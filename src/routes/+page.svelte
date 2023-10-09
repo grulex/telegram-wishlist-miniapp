@@ -5,15 +5,12 @@
     export let data;
 
     onMount(() => {
-        const isTgInitialized = window.Telegram.WebApp.initData !== "";
-        if (isTgInitialized) {
-            const tgApp = window.Telegram.WebApp;
-            const wishlistId = tgApp.initDataUnsafe.start_param;
-            if (wishlistId) {
-                gotoRoute('/wishlists/'+wishlistId)
-            } else {
-                gotoRoute('/wishlists/'+data.profile.default_wishlist.id)
-            }
+        const tgApp = window.Telegram.WebApp;
+        const wishlistId = tgApp.initDataUnsafe.start_param;
+        if (wishlistId) {
+            gotoRoute('/wishlists/'+wishlistId)
+        } else {
+            gotoRoute('/wishlists/'+data.profile.default_wishlist.id)
         }
     })
 </script>

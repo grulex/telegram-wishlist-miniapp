@@ -28,7 +28,7 @@
 </script>
 
 <h1>{product.title}</h1>
-<p>Price from {product.price_from.number} {product.price_from.currency} to {product.price_to.number} {product.price_to.currency}</p>
+<p>Price from {product.price_from.number} {product.price_from.currency}</p>
 <p>Link: <a href="{product.url}" target="_blank">{product.url}</a></p>
 <p>Description:</p>
 <p>{product.description}</p>

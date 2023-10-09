@@ -97,7 +97,6 @@
         id: "",
         title: "Tesla Model X",
         price_from: "78000.00",
-        price_to: "89000.00",
         description: "Электроавтомобиль",
         url: "",
         // image: "",
@@ -127,15 +126,6 @@
       readonly={loading}
       name="price_from"
       value={item.product.price_from}
-    />
-  </label>
-  <label class="hint-text">
-    Price to
-    <input
-      type="number"
-      readonly={loading}
-      name="price_to"
-      value={item.product.price_to}
     />
   </label>
   <label class="hint-text">
