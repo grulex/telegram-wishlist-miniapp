@@ -1,5 +1,5 @@
 <script>
-    import { invalidateAll } from '$app/navigation';
+    import {goto as gotoRoute, invalidateAll} from '$app/navigation';
     import { applyAction, deserialize } from '$app/forms';
 
     import { onMount } from "svelte";
@@ -45,9 +45,23 @@
             if (window.mainButtonFunction) {
                 mainButton.offClick(window.mainButtonFunction);
             }
+
             mainButton.onClick(submitForm);
             window.mainButtonFunction = submitForm;
             mainButton.show();
+
+            const backButton = tgApp.BackButton
+            if (window.backButtonFunction) {
+                backButton.offClick(window.backButtonFunction);
+            }
+            const back = () => {
+                mainButton.hide();
+                backButton.hide();
+                gotoRoute('/wishlists/'+data.wishlist.wishlist.id)
+            }
+            backButton.onClick(back);
+            window.backButtonFunction = back;
+            backButton.show();
         }
     })
 

@@ -1,6 +1,27 @@
 <script>
+    import {onMount} from "svelte";
+    import {goto as gotoRoute} from "$app/navigation";
+
     /** @type {import('./$types').PageData} */
     export let data;
+
+    onMount(() => {
+        const isTgInitialized = window.Telegram.WebApp.initData !== "";
+        if (isTgInitialized) {
+            const tgApp = window.Telegram.WebApp;
+            const backButton = tgApp.BackButton
+            if (window.backButtonFunction) {
+                backButton.offClick(window.backButtonFunction);
+            }
+            const back = () => {
+                backButton.hide();
+                gotoRoute('/wishlists/'+data.wishlist.wishlist.id)
+            }
+            backButton.onClick(back);
+            window.backButtonFunction = back;
+            backButton.show();
+        }
+    })
 
     let item = data.itemsByProductId[data.productId];
     let product = item.product;

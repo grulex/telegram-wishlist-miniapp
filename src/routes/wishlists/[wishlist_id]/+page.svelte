@@ -1,15 +1,12 @@
 <script>
     import {goto as gotoRoute} from '$app/navigation'
-    import {getContext} from "svelte";
     export let data;
     console.log(data)
     let newWish = () => gotoRoute(`/wishlists/${data.wishlist.wishlist.id}/items/new/edit`)
     let editWishlist = () => gotoRoute(`/wishlists/${data.wishlist.wishlist.id}/edit`)
     let share = () => {
-
         window.Telegram.WebApp.switchInlineQuery("my", ['users', 'groups', 'channels'])
     }
-
 </script>
 
 <h1>{data.wishlist.wishlist.title}</h1>
