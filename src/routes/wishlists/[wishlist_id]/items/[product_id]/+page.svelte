@@ -1,6 +1,6 @@
 <script>
     import {onMount} from "svelte";
-    import {goto as gotoRoute} from "$app/navigation";
+    import {goto as gotoRoute, invalidateAll} from "$app/navigation";
 
     /** @type {import('./$types').PageData} */
     export let data;
@@ -23,22 +23,92 @@
         }
     })
 
-    const remove = () => {
-        fetch('', {method: 'DELETE'}).then(() => {console.log("OK")})
+    let removeInProgress = false;
+    let bookInProgress = false;
+    let unbookInProgress = false;
+    let copyToMyWishlistInProgress = false;
+    let copyToMyWishlistSuccess = false;
+
+    const remove = async () => {
+        const button = {id: 'yes', type:'destructive', text: 'Yes'};
+
+        const callback = async (id) => {
+            if (id === 'yes') {
+                removeInProgress = true;
+                const response = await fetch('', {method: 'DELETE'});
+                if (response.status === 200) {
+                    await invalidateAll();
+                    await gotoRoute('/wishlists/'+data.wishlist.wishlist.id)
+                }
+                removeInProgress = false;
+            }
+        }
+
+        await showDialog('Removing', 'Do you want to remove this wish?', button, callback);
     }
-    const book = () => {
-        fetch('', {method: 'POST', body: JSON.stringify({action:"book"})}).then(() => {console.log("OK")})
+    const book = async () => {
+        const button = {id: 'yes', type:'ok', text: 'Yes!'};
+
+        const callback = async (id) => {
+            if (id === 'yes') {
+                bookInProgress = true;
+                const response = await fetch('', {method: 'POST', body: JSON.stringify({action:"book"})})
+                if (response.status === 200) {
+                    await invalidateAll();
+                    await gotoRoute('/wishlists/'+data.wishlist.wishlist.id)
+                }
+                bookInProgress = false;
+            }
+        }
+
+        await showDialog('Booking', 'Are you planning to fulfill this wish?', button, callback);
     }
-    const unbook = () => {
-        fetch('', {method: 'POST', body: JSON.stringify({action:"unbook"})}).then(() => {console.log("OK")})
+    const unbook = async () => {
+        const button = {id: 'yes', type:'ok', text: 'Yes'};
+
+        const callback = async (id) => {
+            if (id === 'yes') {
+                unbookInProgress = true;
+                const response = await fetch('', {method: 'POST', body: JSON.stringify({action:"unbook"})})
+                if (response.status === 200) {
+                    await invalidateAll();
+                    await gotoRoute('/wishlists/'+data.wishlist.wishlist.id)
+                }
+                unbookInProgress = false;
+            }
+        }
+
+        await showDialog('Unbooking', 'Do you no longer want to fulfill this desire?', button, callback);
     }
-    const copyToMyWishlist = () => {
-        fetch('', {method: 'POST', body: JSON.stringify({action:"copy"})}).then(() => {console.log("OK")})
+
+    const copyToMyWishlist = async () => {
+        copyToMyWishlistInProgress = true;
+        const response = await fetch('', {method: 'POST', body: JSON.stringify({action:"copy"})})
+        if (response.status === 200) {
+            copyToMyWishlistSuccess = true;
+            await invalidateAll();
+        }
+        copyToMyWishlistInProgress = false;
     }
+
+    const showDialog = async (title, message, button, callback) =>  {
+        const params = {
+            title: title,
+            message: message,
+            buttons: [
+                {type:'cancel', text: 'No'},
+                button,
+            ],
+        }
+        await window.Telegram.WebApp.showPopup(params, callback);
+    }
+
 
     let item = data.itemsByProductId[data.productId];
     let product = item.product;
+    console.log(item);
     let isOwner = data.wishlist.wishlist.is_my_wishlist;
+    let isBookedByCurrentUser = item.is_booked_by_current_user;
 
 </script>
 
@@ -51,10 +121,19 @@
 
 
 
-{#if isOwner }
+{#if !isOwner }
     <button on:click={remove}>Remove</button>
 {:else}
-    <button on:click={book}>Book!</button>
-    <button on:click={unbook}>Unbook</button>
+    {#if isBookedByCurrentUser}
+        <button on:click={unbook}>Unbook</button>
+    {:else}
+        <button on:click={book}>
+            {#if bookInProgress}
+                Booking...
+            {:else}
+                Book
+            {/if}
+        </button>
+    {/if}
     <button on:click={copyToMyWishlist}>Copy to my Wishlist</button>
 {/if}

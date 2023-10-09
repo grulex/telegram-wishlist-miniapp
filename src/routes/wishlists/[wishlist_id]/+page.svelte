@@ -19,6 +19,7 @@
     navigator.clipboard.writeText(
       data.tgAppUrl + `?startapp=${data.wishlist.wishlist.id}`
     );
+    window.Telegram.WebApp.showAlert("Link copied to clipboard!");
   };
   let isOwner = data.wishlist.wishlist.is_my_wishlist;
 </script>

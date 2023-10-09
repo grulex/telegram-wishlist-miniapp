@@ -3,7 +3,7 @@ import { redirect } from '@sveltejs/kit';
 import {env} from "$lib/env.js";
 
 export const actions = {
-    create: async ({request, cookies}) => {
+    create: async ({ request, cookies }) => {
         const back = env.BACKEND_HOST
 
         const data = await request.formData();
