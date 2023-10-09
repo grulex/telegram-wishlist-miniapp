@@ -123,7 +123,7 @@
 <style>
   section {
     padding: 16px 20px;
-    background-color: var(--tg-theme-secondary-bg-color);
+    background-color: var(--tg-theme-bg-color);
   }
   .img {
     position: relative;
@@ -168,7 +168,7 @@
     gap: 16px;
   }
   .no-fill-button {
-    background-color: var(--tg-theme-secondary-bg-color);
+    background-color: var(--tg-theme-bg-color);
   }
   .no-fill-button path {
     fill: var(--tg-theme-button-color);
@@ -184,7 +184,7 @@
     display: flex;
     justify-content: space-between;
     gap: 0.5rem;
-    background-color: var(--tg-theme-bg-color);
+    background-color: var(--tg-theme-secondary-bg-color);
     padding: 8px 8px;
   }
   .share-section > button {
@@ -207,7 +207,7 @@
     color: var(--tg-theme-text-color);
   }
   .list-item {
-    border-top: 1px solid var(--tg-theme-bg-color);
+    border-top: 1px solid var(--tg-theme-secondary-bg-color);
   }
   .item-text {
     width: 100%;
