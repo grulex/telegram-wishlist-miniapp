@@ -36,7 +36,7 @@
     }
     const goToBot = (allowed) => {
       if (allowed) {
-        window.Telegram.WebApp.openTelegramLink("https://t.me/FastWishlistBot");
+        window.Telegram.WebApp.openTelegramLink("https://t.me/wishboxbot");
       }
     };
     window.Telegram.WebApp.requestWriteAccess(goToBot);
