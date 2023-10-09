@@ -1,4 +1,5 @@
 import { error } from '@sveltejs/kit';
+import {env} from "$lib/env.js";
 
 export async function load({ params, parent }) {
     await parent();
@@ -7,6 +8,6 @@ export async function load({ params, parent }) {
     }
 
     return {
-
+        tgAppUrl: env.TG_MINIAPP_URL,
     };
 }

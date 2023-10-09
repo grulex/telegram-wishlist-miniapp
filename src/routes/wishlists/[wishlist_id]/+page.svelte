@@ -1,5 +1,6 @@
 <script>
   import { goto as gotoRoute } from "$app/navigation";
+
   export let data;
   console.log(data);
   let newWish = () =>
@@ -13,7 +14,11 @@
       "channels",
     ]);
   };
-  let copyLink = () => {};
+  let copyLink = () => {
+    navigator.clipboard.writeText(
+      data.tgAppUrl + `?startapp=${data.wishlist.wishlist.id}`
+    );
+  };
 </script>
 
 <section>
