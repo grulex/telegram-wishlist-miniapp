@@ -45,7 +45,6 @@
     <p>{data.wishlist.wishlist.description}</p>
   {/if}
 </section>
-<div class="divider" />
 <section class="share-section">
   <button class="no-fill-button" on:click={copyLink}>
     <svg width="24" height="24" viewBox="0 0 512 512"
@@ -62,9 +61,8 @@
     </svg>
   </button>
 </section>
-<div class="divider" />
 <section>
-  <div class="top">
+  <div class="top align-center mb-16">
     <h2>Wishes</h2>
     <div class="items-wrapper">
       <button class="no-fill-button" on:click={newWish}>
@@ -81,10 +79,40 @@
     {#each data.items.items as item}
       <div class="list-item">
         <a
+          class="list-link"
           href="/wishlists/{data.wishlist.wishlist.id}/items/{item.product.id}"
         >
-          {item.product.title}
+          <div class="img">
+            <img
+              src="https://sun9-20.userapi.com/impf/c636917/v636917960/2cc57/koX2cvcfZV8.jpg?size=2560x1633&quality=96&sign=7bae2ee2d0a228ba5c06e4a82a1ef687&type=album"
+              alt="Фото Саши"
+            />
+          </div>
+          <div class="item-text">
+            <p class="title-item">{item.product.title}</p>
+            <p class="description-item">{item.product.description}</p>
+            <p class="price-item">
+              ${item.product.price_from.number}
+            </p>
+          </div>
         </a>
+        <button class="no-fill-button disabled-btn-color">
+          <svg width="20" height="20" viewBox="0 0 24 24">
+            <path
+              d="M8.43 19.78a1 1 0 0 1-.7-.29l-6.44-6.43a1 1 0 0 1 1.42-1.41l5.72 5.72L21.29 4.51a1 1 0 0 1 1.42 0 1 1 0 0 1 0 1.41L9.14 19.49a1 1 0 0 1-.71.29z"
+            />
+          </svg>
+
+          <!-- <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="24"
+            viewBox="0 -960 960 960"
+            width="24"
+            ><path
+              d="M480-80q-139-35-229.5-159.5T160-516v-244l320-120 320 120v244q0 152-90.5 276.5T480-80Zm0-84q104-33 172-132t68-220v-189l-240-90-240 90v189q0 121 68 220t172 132Zm0-316Z"
+            />
+          </svg> -->
+        </button>
       </div>
     {/each}
   {:else}
@@ -96,10 +124,6 @@
   section {
     padding: 16px 20px;
     background-color: var(--tg-theme-secondary-bg-color);
-  }
-  .divider {
-    min-height: 8px;
-    background-color: var(--tg-theme-bg-color);
   }
   .img {
     position: relative;
@@ -116,12 +140,12 @@
     height: 100%;
   }
   h1 {
-    font-size: 24px;
-    color: var(--tg-theme-button-color);
+    font-size: 32px;
+    color: var(--tg-theme-text-color);
   }
   h2 {
-    font-size: 20px;
-    color: var(--tg-theme-button-color);
+    font-size: 24px;
+    color: var(--tg-theme-text-color);
   }
   p {
     margin-top: 1rem;
@@ -129,31 +153,85 @@
   }
   .top {
     display: flex;
-    align-items: center;
+    align-items: start;
     justify-content: space-between;
   }
-  .list-item {
-    padding: 8px 0;
+  .align-center {
+    align-items: center;
   }
-  .list-item:not(:last-child) {
-    padding: 8px 0;
+  .mb-16 {
+    margin-bottom: 12px;
   }
-  .list-item > a {
-    color: var(--tg-theme-text-color);
-  }
+
   .items-wrapper {
     display: flex;
     gap: 16px;
-    align-items: center;
   }
   .no-fill-button {
     background-color: var(--tg-theme-secondary-bg-color);
   }
   .no-fill-button path {
-    fill: var(--tg-theme-hint-color);
+    fill: var(--tg-theme-button-color);
     transition: 0.2s;
   }
+  .disabled-btn-color path {
+    fill: var(--tg-theme-hint-color);
+  }
   .no-fill-button:active path {
-    fill: var(--tg-theme-button-color);
+    fill: var(--tg-theme-link-color);
+  }
+  .share-section {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5rem;
+    background-color: var(--tg-theme-bg-color);
+    padding: 8px 8px;
+  }
+  .share-section > button {
+    border-radius: 12px;
+    flex: 0 1 50%;
+    padding: 16px 0;
+  }
+  .list-link {
+    display: flex;
+    gap: 1rem;
+    width: 100%;
+    align-items: center;
+  }
+  .list-item {
+    max-width: 100%;
+    overflow: auto;
+    padding: 16px 0;
+    display: flex;
+    gap: 1rem;
+    color: var(--tg-theme-text-color);
+  }
+  .list-item {
+    border-top: 1px solid var(--tg-theme-bg-color);
+  }
+  .item-text {
+    width: 100%;
+  }
+  .list-item p {
+    margin: 0;
+    word-break: break-word;
+    max-height: 2.3em;
+    overflow: hidden;
+  }
+  .list-item p:not(:last-child) {
+    margin-bottom: 6px;
+  }
+  .list-item .title-item {
+    color: var(--tg-theme-text-color);
+    max-height: 1.2em;
+    overflow: hidden;
+  }
+  .description-item {
+    color: var(--tg-theme-hint-color);
+    font-size: 14px;
+  }
+  .price-item {
+    font-size: 14px;
+    color: var(--tg-theme-hint-color);
   }
 </style>
