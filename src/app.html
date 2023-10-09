@@ -15,7 +15,7 @@
 			tg = base64encode(tg)
 			document.cookie = "tg_init_data="+tg;
 			window.Telegram.WebApp.ready()
-			Telegram.WebApp.setHeaderColor('secondary_bg_color');
+			Telegram.WebApp.setHeaderColor('bg_color');
 		</script>
 
 		<style>
@@ -25,7 +25,7 @@
 				padding: 0;
 			}
 			body {
-				background-color: var(--tg-theme-secondary-bg-color);
+				background-color: var(--tg-theme-bg-color);
 				color: var(--tg-theme-text-color);
 				font-family: sans-serif;
 				margin: 0;
