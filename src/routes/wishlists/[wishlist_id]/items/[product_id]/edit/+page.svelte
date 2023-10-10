@@ -55,36 +55,36 @@
     handleSubmit(form);
   };
 
-    onMount(() => {
-        const isTgInitialized = window.Telegram.WebApp.initData !== "";
-        if (isTgInitialized) {
-            const tgApp = window.Telegram.WebApp;
-            mainButton = tgApp.MainButton
-            mainButton.setParams({
-                text: "Save",
-            })
-            if (window.mainButtonFunction) {
-                mainButton.offClick(window.mainButtonFunction);
-            }
+  onMount(() => {
+    const isTgInitialized = window.Telegram.WebApp.initData !== "";
+    if (isTgInitialized) {
+      const tgApp = window.Telegram.WebApp;
+      mainButton = tgApp.MainButton;
+      mainButton.setParams({
+        text: "Save",
+      });
+      if (window.mainButtonFunction) {
+        mainButton.offClick(window.mainButtonFunction);
+      }
 
-            mainButton.onClick(submitForm);
-            window.mainButtonFunction = submitForm;
-            mainButton.show();
+      mainButton.onClick(submitForm);
+      window.mainButtonFunction = submitForm;
+      mainButton.show();
 
-            const backButton = tgApp.BackButton
-            if (window.backButtonFunction) {
-                backButton.offClick(window.backButtonFunction);
-            }
-            const back = () => {
-                mainButton.hide();
-                backButton.hide();
-                gotoRoute('/wishlists/'+data.wishlist.wishlist.id)
-            }
-            backButton.onClick(back);
-            window.backButtonFunction = back;
-            backButton.show();
-        }
-    })
+      const backButton = tgApp.BackButton;
+      if (window.backButtonFunction) {
+        backButton.offClick(window.backButtonFunction);
+      }
+      const back = () => {
+        mainButton.hide();
+        backButton.hide();
+        gotoRoute("/wishlists/" + data.wishlist.wishlist.id);
+      };
+      backButton.onClick(back);
+      window.backButtonFunction = back;
+      backButton.show();
+    }
+  });
 
   let productId = data.productId === "new" ? "" : data.productId;
   let item = data.itemsByProductId[productId];
@@ -97,7 +97,7 @@
         id: "",
         title: "Tesla Model X",
         price_from: "78000.00",
-        description: "Электроавтомобиль",
+        description: "Electric car",
         url: "",
         // image: "",
       },
@@ -106,60 +106,102 @@
   }
 </script>
 
-<h1>{productId ? "Edit wish" : "Add wish"}</h1>
-<form
-  name="form"
-  method="post"
-  on:submit|preventDefault={submitForm}
-  action="?/create"
->
-  <input type="hidden" name="wishlist_id" value={data.wishlist.wishlist.id} />
-  <input type="hidden" name="product_id" value={productId} />
-  <label class="hint-text">
-    Title
-    <input readonly={loading} name="title" value={item.product.title} />
-  </label>
-  <label class="hint-text">
-    Price from
-    <input
-      type="number"
-      readonly={loading}
-      name="price_from"
-      value={item.product.price_from}
-    />
-  </label>
-  <label class="hint-text">
-    URL
-    <input readonly={loading} name="url" value={item.product.url} />
-  </label>
-  <label class="hint-text">
-    Description
-    <textarea readonly={loading} aria-multiline="true" name="description"
-      >{item.product.description}</textarea
-    >
-  </label>
-  <label class="hint-text">
-    <input
-      type="checkbox"
-      readonly={loading}
-      name="is_booking_available"
-      checked={item.is_booking_available}
-    />
-    Booking available
-  </label>
-  {#if !mainButton}
-    <button disabled={loading}>{loading ? "Saving..." : "Save"}</button>
-  {/if}
-</form>
+<section>
+  <h1>{productId ? "Edit wish" : "Add wish"}</h1>
+
+  <form
+    name="form"
+    method="post"
+    on:submit|preventDefault={submitForm}
+    action="?/create"
+  >
+    <input type="hidden" name="wishlist_id" value={data.wishlist.wishlist.id} />
+    <input type="hidden" name="product_id" value={productId} />
+
+    <label class="hint-text">
+      <p>Title</p>
+      <input readonly={loading} name="title" placeholder={item.product.title} />
+    </label>
+
+    <!-- <label class="hint-text">
+      <p>Price from</p>
+      <input
+        type="number"
+        readonly={loading}
+        name="price_from"
+        placeholder={item.product.price_from}
+      />
+    </label> -->
+
+    <label class="hint-text">
+      <p>URL</p>
+      <input readonly={loading} name="url" value={item.product.url} />
+    </label>
+
+    <label class="hint-text">
+      <p>Description</p>
+      <textarea
+        readonly={loading}
+        aria-multiline="true"
+        name="description"
+        placeholder={item.product.description}
+      />
+    </label>
+
+    <label class="label-checkbox">
+      <input
+        class="checkbox"
+        type="checkbox"
+        readonly={loading}
+        name="is_booking_available"
+        checked={item.is_booking_available}
+      />
+      <span class="hint-text">Booking available</span>
+    </label>
+
+    {#if !mainButton}
+      <button disabled={loading}>{loading ? "Saving..." : "Save"}</button>
+    {/if}
+  </form>
+</section>
 
 <style>
-  form,
-  label {
-    display: flex;
-    flex-direction: column;
-    align-items: start;
+  h1 {
+    margin-bottom: 1rem;
   }
   label {
+    display: block;
     margin-bottom: 1rem;
+  }
+  input,
+  textarea {
+    padding: 0.3em 0.5em;
+    border-radius: 8px;
+    width: 100%;
+    border: none;
+    font-size: 1rem;
+  }
+  textarea {
+    resize: none;
+    min-height: 4.2em;
+  }
+  p {
+    margin: 0 0 0.2rem;
+  }
+  span {
+    align-items: center;
+  }
+  .label-checkbox {
+    display: flex;
+    cursor: pointer;
+  }
+  .checkbox {
+    width: 1em;
+    height: 1em;
+    margin-right: 0.3em;
+    color: var(--tg-theme-button-color);
+  }
+  .checkbox:checked {
+    color: var(--tg-theme-button-color);
   }
 </style>
