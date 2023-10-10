@@ -128,6 +128,7 @@
   let product = item.product;
   let isOwner = data.wishlist.wishlist.is_my_wishlist;
   let isBookedByCurrentUser = item.is_booked_by_current_user;
+  const descriptionLines = product.description.split(/\n|\r\n/g).map((v, i) => {return  {text:v, br:"<br>"} })
 </script>
 
 <section>
@@ -210,7 +211,9 @@
 
 <section>
   {#if product.description !== ""}
-    <p class="description">{product.description}</p>
+    {#each descriptionLines as { text }}
+      <p>{text}</p>
+    {/each}
   {/if}
 </section>
 
