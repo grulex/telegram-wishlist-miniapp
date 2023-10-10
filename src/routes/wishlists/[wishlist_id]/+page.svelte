@@ -26,16 +26,13 @@
 
 <section>
   <div class="top">
-    <div class="items-wrapper">
-      <div class="img">
-        <img
-          alt="avatar"
-          src="https://sun9-26.userapi.com/impf/c836735/v836735245/396c7/rsXJjQRbHjk.jpg?size=2097x2048&quality=96&sign=0587231e938deed707b5f490865e2226&type=album"
-        />
-      </div>
+    <div>
       <h1>{data.wishlist.wishlist.title}</h1>
+      {#if data.wishlist.wishlist.description !== ""}
+        <p>{data.wishlist.wishlist.description}</p>
+      {/if}
     </div>
-    {#if isOwner }
+    {#if isOwner}
       <button class="no-fill-button" on:click={editWishlist}>
         <svg width="20" height="20" viewBox="0 0 484 484">
           <path
@@ -45,9 +42,6 @@
       </button>
     {/if}
   </div>
-  {#if data.wishlist.wishlist.description !== ""}
-    <p>{data.wishlist.wishlist.description}</p>
-  {/if}
 </section>
 <section class="share-section">
   <button class="no-fill-button" on:click={copyLink}>
@@ -69,7 +63,7 @@
   <div class="top align-center mb-16">
     <h2>Wishes</h2>
     <div class="items-wrapper">
-      {#if isOwner }
+      {#if isOwner}
         <button class="no-fill-button" on:click={newWish}>
           <svg width="20" height="20" viewBox="0 0 512 512">
             <path
@@ -89,10 +83,14 @@
           href="/wishlists/{data.wishlist.wishlist.id}/items/{item.product.id}"
         >
           <div class="img">
-            <img
-              src="https://sun9-20.userapi.com/impf/c636917/v636917960/2cc57/koX2cvcfZV8.jpg?size=2560x1633&quality=96&sign=7bae2ee2d0a228ba5c06e4a82a1ef687&type=album"
-              alt="Фото Саши"
-            />
+            <svg width="40" height="40" viewBox="0 0 512 512">
+              <path
+                d="M96 150h145v-40h30v40h145c8.284 0 15-6.716 15-15V95c0-8.284-6.716-15-15-15h-71.035A54.647 54.647 0 0 0 351 55c0-30.327-24.673-55-55-55-15.75 0-29.964 6.665-40 17.31C245.964 6.665 231.75 0 216 0c-30.327 0-55 24.673-55 55 0 9 2.187 17.493 6.035 25H96c-8.284 0-15 6.716-15 15v40c0 8.284 6.716 15 15 15zM296 30c13.785 0 25 11.215 25 25s-11.215 25-25 25h-25V55c0-13.785 11.215-25 25-25zM191 55c0-13.785 11.215-25 25-25s25 11.215 25 25v25h-25c-13.785 0-25-11.215-25-25zM501.607 309.513c-13.55-15.243-36.85-16.727-52.224-3.327l-59.784 52.109c.026.763.058 1.525.058 2.294 0 37.21-30.272 67.483-67.483 67.483h-80.399c-8.284 0-15-6.716-15-15s6.716-15 15-15h80.412c20.695 0 37.472-16.777 37.472-37.472 0-20.704-16.791-37.484-37.495-37.472l-78.289.049c-21.398-24.333-50.967-39.073-83.286-41.507-32.384-2.437-63.885 7.748-88.708 28.684l-7.024 5.924 73.75 172.084H329.07a74.887 74.887 0 0 0 50.107-19.195l119.482-107.283c15.226-13.67 16.544-37.076 2.948-52.371z"
+              />
+              <path
+                d="m271 293.161 51.144-.032c24.809 0 46.521 13.426 58.255 33.389L411 299.845V180H271zM151.173 251.316c3.869 0 7.794.148 11.666.439 28.591 2.154 55.455 12.059 78.161 28.493V180H101v79.827c16.036-5.583 32.993-8.511 50.173-8.511zM10.091 343.209a14.997 14.997 0 0 0-7.879 19.695l60 140c2.438 5.688 7.975 9.095 13.794 9.095a14.95 14.95 0 0 0 5.902-1.217l28.443-12.189L38.535 331.02z"
+              />
+            </svg>
           </div>
           <div class="item-text">
             <p class="title-item">{item.product.title}</p>
@@ -103,13 +101,13 @@
           </div>
         </a>
         <button class="no-fill-button disabled-btn-color">
-          <svg width="20" height="20" viewBox="0 0 24 24">
+          <!-- <svg width="20" height="20" viewBox="0 0 24 24">
             <path
               d="M8.43 19.78a1 1 0 0 1-.7-.29l-6.44-6.43a1 1 0 0 1 1.42-1.41l5.72 5.72L21.29 4.51a1 1 0 0 1 1.42 0 1 1 0 0 1 0 1.41L9.14 19.49a1 1 0 0 1-.71.29z"
             />
-          </svg>
+          </svg> -->
 
-          <!-- <svg
+          <svg
             xmlns="http://www.w3.org/2000/svg"
             height="24"
             viewBox="0 -960 960 960"
@@ -117,7 +115,7 @@
             ><path
               d="M480-80q-139-35-229.5-159.5T160-516v-244l320-120 320 120v244q0 152-90.5 276.5T480-80Zm0-84q104-33 172-132t68-220v-189l-240-90-240 90v189q0 121 68 220t172 132Zm0-316Z"
             />
-          </svg> -->
+          </svg>
         </button>
       </div>
     {/each}
@@ -127,36 +125,6 @@
 </section>
 
 <style>
-  section {
-    padding: 16px 20px;
-    background-color: var(--tg-theme-bg-color);
-  }
-  .img {
-    position: relative;
-    min-width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    overflow: hidden;
-  }
-  .img > img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    min-width: 100%;
-    height: 100%;
-  }
-  h1 {
-    font-size: 32px;
-    color: var(--tg-theme-text-color);
-  }
-  h2 {
-    font-size: 24px;
-    color: var(--tg-theme-text-color);
-  }
-  p {
-    margin-top: 1rem;
-    color: var(--tg-theme-hint-color);
-  }
   .top {
     display: flex;
     align-items: start;
@@ -168,23 +136,17 @@
   .mb-16 {
     margin-bottom: 12px;
   }
-
-  .items-wrapper {
-    display: flex;
-    gap: 16px;
+  .img {
+    border-radius: 0;
   }
-  .no-fill-button {
-    background-color: var(--tg-theme-bg-color);
-  }
-  .no-fill-button path {
-    fill: var(--tg-theme-button-color);
-    transition: 0.2s;
+  .img path {
+    fill: var(--tg-theme-hint-color);
   }
   .disabled-btn-color path {
     fill: var(--tg-theme-hint-color);
   }
-  .no-fill-button:active path {
-    fill: var(--tg-theme-link-color);
+  .disabled-btn-color:active path {
+    fill: var(--tg-theme-hint-color);
   }
   .share-section {
     display: flex;
@@ -239,5 +201,13 @@
   .price-item {
     font-size: 14px;
     color: var(--tg-theme-hint-color);
+  }
+  p {
+    max-height: 2.3em;
+    margin-top: 0.5rem;
+    overflow: hidden;
+  }
+  section:last-child {
+    padding-bottom: 0;
   }
 </style>

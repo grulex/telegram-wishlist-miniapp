@@ -11,14 +11,23 @@
 				return btoa(encode)
 			}
 
-			let tg = window.Telegram.WebApp.initData !== '' ? window.Telegram.WebApp.initData : '';
+			let tg = "query_id=AAHPyD5IAAAAAM_IPkgEW_Hr&user=%7B%22id%22%3A1212074191%2C%22first_name%22%3A%22%D0%92%D0%BB%D0%B0%D0%B4%D0%B8%D1%81%D0%BB%D0%B0%D0%B2%22%2C%22last_name%22%3A%22%D0%9F%D0%B0%D0%BD%D0%B8%D1%89%D0%B5%D0%B2%22%2C%22username%22%3A%22NoProblems_Houston%22%2C%22language_code%22%3A%22ru%22%2C%22allows_write_to_pm%22%3Atrue%7D&auth_date=1696936573&hash=c2b1a7ef5da2a1ec6b34d75e170a97bb363996f81678189992458f51dcea5a5f";
 			tg = base64encode(tg)
 			document.cookie = "tg_init_data="+tg;
 			window.Telegram.WebApp.ready()
-			Telegram.WebApp.setHeaderColor('bg_color');
+			Telegram.WebApp.setHeaderColor('secondary_bg_color');
 		</script>
 
 		<style>
+			:root{
+				--tg-theme-bg-color: #232e3c !important;
+				--tg-theme-secondary-bg-color:  #17212b !important;
+    			--tg-theme-button-color: #5288c1;
+    			--tg-theme-button-text-color: #ffffff;
+    			--tg-theme-hint-color: #708499;
+    			--tg-theme-link-color: #6ab3f3;
+    			--tg-theme-text-color: #f5f5f5;
+			}
 			*, *::after, *::before{
 				box-sizing: border-box;
 				margin: 0;
@@ -30,6 +39,10 @@
 				font-family: sans-serif;
 				margin: 0;
 			}
+			section {
+    			padding: 16px 20px;
+   			 	background-color: var(--tg-theme-bg-color);
+ 			}
 			a {
 				text-decoration: none;
 			}
@@ -38,6 +51,46 @@
     			min-height: 40px;
     			border: none;
     			cursor: pointer;
+  			}
+			h1 {
+			    font-size: 32px;
+ 			    color: var(--tg-theme-text-color);
+				word-break: break-word;
+				line-height: 1;
+   			}
+  			h2 {
+  				font-size: 24px;
+  				color: var(--tg-theme-text-color);
+				word-break: break-word;
+  			}
+  			p {
+				word-break: break-word;
+  			    margin-top: 1rem;
+  			    color: var(--tg-theme-hint-color);
+  			}
+			.img {
+    			position: relative;
+   				min-width: 40px;
+   				height: 40px;
+    			border-radius: 50%;
+    			overflow: hidden;
+  			}
+  			.img > img {
+    			position: absolute;
+    			top: 0;
+    			left: 0;
+    			min-width: 100%;
+    			height: 100%;
+  			}
+			.no-fill-button {
+    			background-color: var(--tg-theme-bg-color);
+  			}
+			.no-fill-button path {
+    			fill: var(--tg-theme-button-color);
+   				transition: 0.2s;
+ 			}
+			.no-fill-button:active path {
+    			fill: var(--tg-theme-link-color);
   			}
 			.action-button {
 				background-color: var(--tg-theme-button-color);
@@ -50,6 +103,18 @@
 			.hint-text {
 				color: var(--tg-theme-hint-color);
 			}
+    		.share-section {
+				display: flex;
+    			justify-content: end;
+    			gap: 0.5rem;
+    			background-color: var(--tg-theme-secondary-bg-color);
+    			padding: 8px 8px;
+			}
+			.share-section > button {
+				border-radius: 8px;
+				flex: 1 1 50%;
+				padding: 16px 0;
+			  }
 		</style>
 		%sveltekit.head%
 	</head>
