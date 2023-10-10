@@ -179,6 +179,7 @@
     width: 100%;
     border: none;
     font-size: 1rem;
+    border: 1px solid var(--tg-theme-button-color);
   }
   textarea {
     resize: none;
