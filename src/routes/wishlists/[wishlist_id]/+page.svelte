@@ -31,7 +31,7 @@
 
   let isOwner = data.wishlist.wishlist.is_my_wishlist;
 
-  let description = data.wishlist.wishlist.description.replace("\n", "<br>");
+  const descriptionLines = data.wishlist.wishlist.description.split(/\n|\r\n/g).map((v, i) => {return  {text:v, br:"<br>"} })
 </script>
 
 <div class="flex-column">
@@ -40,7 +40,10 @@
       <div>
         <h1>{data.wishlist.wishlist.title}</h1>
         {#if data.wishlist.wishlist.description !== ""}
-          <p>{description}</p>
+          {#each descriptionLines as { text, br }}
+            <p>{text}</p>
+            {@html br}
+          {/each}
         {/if}
       </div>
       {#if isOwner}
