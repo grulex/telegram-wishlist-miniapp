@@ -144,11 +144,9 @@
     {/if}
   </section>
   <div class="decot-dark flex-shrink" />
-  <!-- <section class="share-section"> -->
   <button class="no-fill-button create-button" on:click={initNewMember}
     >Create My Wishlist</button
   >
-  <!-- </section> -->
 </div>
 
 <style>
@@ -183,7 +181,6 @@
     justify-content: space-between;
     gap: 0.5rem;
     background-color: var(--tg-theme-secondary-bg-color);
-    /* padding: 8px 8px; */
   }
   .share-section > button {
     border-radius: 12px;
