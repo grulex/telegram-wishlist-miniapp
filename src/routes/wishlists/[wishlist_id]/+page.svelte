@@ -249,10 +249,6 @@
     color: var(--tg-theme-hint-color);
     font-size: 14px;
   }
-  .price-item {
-    font-size: 14px;
-    color: var(--tg-theme-hint-color);
-  }
   .decot-dark {
     width: 100%;
     min-height: 8px;
