@@ -13,6 +13,8 @@ Try it now: https://t.me/FastWishlistBot
 ## Getting started
 Backend is required to run the application. [Backend repository](https://github.com/grulex/go-wishlist)
 
+Also, you need install Node.js and npm. [Node.js download page](https://nodejs.org/en/download/)
+
 ### Starting MiniApp locally
 ```bash
 # copy default env file
