@@ -170,7 +170,7 @@
 
 <section class="share-section">
   {#if isOwner}
-    <button class="no-fill-button flex-end" on:click={remove}>
+    <button class="no-fill-button flex-end btn-text" on:click={remove}>
       {#if removeInProgress === false}
         <svg width="32" height="32" viewBox="0 0 24 24"
           ><path
@@ -183,9 +183,10 @@
       {:else}
         <div class="custom-loader" />
       {/if}
+      Delete
     </button>
   {:else}
-    <button class="no-fill-button flex-end" on:click={book}>
+    <button class="no-fill-button flex-end btn-text" on:click={book}>
       {#if bookInProgress === false}
         <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
           <path
@@ -202,8 +203,9 @@
       {:else}
         <div class="custom-loader" />
       {/if}
+      Book
     </button>
-    <button class="no-fill-button flex-end" on:click={unbook}>
+    <button class="no-fill-button flex-end btn-text" on:click={unbook}>
       {#if unbookInProgress === false}
         <svg height="32" viewBox="0 -960 960 960" width="32"
           ><path
@@ -213,17 +215,22 @@
       {:else}
         <div class="custom-loader" />
       {/if}
+      Unbook
     </button>
-    <button class="no-fill-button flex-end" on:click={copyToMyWishlist}>
+    <button
+      class="no-fill-button flex-end btn-text"
+      on:click={copyToMyWishlist}
+    >
       {#if copyToMyWishlistInProgress === false}
-        <svg width="24" height="24" viewBox="0 0 512 512">
+        <svg width="32" height="32" viewBox="0 0 22 22">
           <path
-            d="M271 512H80c-44.113 0-80-35.887-80-80V161c0-44.113 35.887-80 80-80h191c44.113 0 80 35.887 80 80v271c0 44.113-35.887 80-80 80zM80 121c-22.055 0-40 17.945-40 40v271c0 22.055 17.945 40 40 40h191c22.055 0 40-17.945 40-40V161c0-22.055-17.945-40-40-40zm351 261V80c0-44.113-35.887-80-80-80H129c-11.047 0-20 8.953-20 20s8.953 20 20 20h222c22.055 0 40 17.945 40 40v302c0 11.047 8.953 20 20 20s20-8.953 20-20zm0 0"
+            d="M21 19H3a1 1 0 0 0 0 2h18a1 1 0 0 0 0-2zM12 2a1 1 0 0 0-1 1v10.59l-3.29-3.3a1 1 0 0 0-1.42 1.42l5 5a1 1 0 0 0 1.42 0l5-5a1 1 0 0 0-1.42-1.42L13 13.59V3a1 1 0 0 0-1-1z"
           />
         </svg>
       {:else}
         <div class="custom-loader" />
       {/if}
+      Copy
     </button>
   {/if}
 </section>

@@ -1,17 +1,29 @@
 <script>
   import { navigating } from "$app/stores";
   import DefaultTheme from "./DefaultTheme.svelte";
-  import {onMount} from "svelte";
+  import { onMount } from "svelte";
+  import {
+    CardPlaceholder,
+    ImagePlaceholder,
+    ListPlaceholder,
+    Skeleton,
+    TestimonialPlaceholder,
+    TextPlaceholder,
+    VideoPlaceholder,
+    WidgetPlaceholder,
+  } from "flowbite-svelte";
 
-  let isOpenedByTelegram = false
+  let isOpenedByTelegram = false;
   onMount(() => {
-    isOpenedByTelegram = window.Telegram.WebApp.platform !== "unknown"
+    isOpenedByTelegram = window.Telegram.WebApp.platform !== "unknown";
   });
 </script>
 
 <main>
   {#if $navigating}
-    loading...
+    <section>
+      <ListPlaceholder />
+    </section>
   {:else}
     <slot />
   {/if}

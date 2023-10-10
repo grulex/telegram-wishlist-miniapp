@@ -31,7 +31,11 @@
 
   let isOwner = data.wishlist.wishlist.is_my_wishlist;
 
-  const descriptionLines = data.wishlist.wishlist.description.split(/\n|\r\n/g).map((v, i) => {return  {text:v} })
+  const descriptionLines = data.wishlist.wishlist.description
+    .split(/\n|\r\n/g)
+    .map((v, i) => {
+      return { text: v };
+    });
 </script>
 
 <div class="flex-column">
@@ -58,19 +62,21 @@
   </section>
 
   <section class="share-section">
-    <button class="no-fill-button" on:click={copyLink}>
+    <button class="no-fill-button btn-text" on:click={copyLink}>
       <svg width="24" height="24" viewBox="0 0 512 512"
         ><path
           d="M271 512H80c-44.113 0-80-35.887-80-80V161c0-44.113 35.887-80 80-80h191c44.113 0 80 35.887 80 80v271c0 44.113-35.887 80-80 80zM80 121c-22.055 0-40 17.945-40 40v271c0 22.055 17.945 40 40 40h191c22.055 0 40-17.945 40-40V161c0-22.055-17.945-40-40-40zm351 261V80c0-44.113-35.887-80-80-80H129c-11.047 0-20 8.953-20 20s8.953 20 20 20h222c22.055 0 40 17.945 40 40v302c0 11.047 8.953 20 20 20s20-8.953 20-20zm0 0"
         /></svg
       >
+      Copy
     </button>
-    <button class="no-fill-button" on:click={share}>
+    <button class="no-fill-button btn-text" on:click={share}>
       <svg width="24" height="24" viewBox="0 0 128 128">
         <path
           d="M8 116c-.305 0-.613-.035-.918-.105A4.007 4.007 0 0 1 4 112c0-36.348 4.598-66.578 60-67.953V16a4 4 0 0 1 6.715-2.937l52 48c.82.753 1.285 1.82 1.285 2.937s-.465 2.184-1.285 2.938l-52 48a3.985 3.985 0 0 1-4.32.727A4.002 4.002 0 0 1 64 112V84.047c-38.004.91-45.016 14.93-52.422 29.742A3.998 3.998 0 0 1 8 116zm60-40c2.211 0 4 1.789 4 4v22.863L114.102 64 72 25.137V48c0 2.211-1.789 4-4 4-44.188 0-53.703 17.09-55.574 44.387C20.711 85.258 34.832 76 68 76z"
         />
       </svg>
+      Share
     </button>
   </section>
 
