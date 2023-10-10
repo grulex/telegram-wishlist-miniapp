@@ -1,6 +1,6 @@
 # Telegram Wishlist MiniApp
 
-With Telegram Wishlist MiniApp, you can effortlessly create and manage your own wishlist, filled with all the things you desire. Share your wishes with your friends, and they can reserve them for you.
+With [Telegram Wishlist MiniApp](https://t.me/FastWishlistBot), you can effortlessly create and manage your own wishlist, filled with all the things you desire. Share your wishes with your friends, and they can reserve them for you.
 
 Key Features:
 - 📜 Create Wishlist: Organize your wishes into separate lists for different occasions or categories.
