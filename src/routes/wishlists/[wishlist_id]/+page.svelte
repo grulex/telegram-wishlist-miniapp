@@ -15,12 +15,20 @@
       "bots",
     ]);
   };
-  let copyLink = () => {
+  const copyLink = () => {
     navigator.clipboard.writeText(
       data.tgAppUrl + `?startapp=${data.wishlist.wishlist.id}`
     );
     window.Telegram.WebApp.showAlert("Link copied to clipboard!");
   };
+  const initNewMember = () => {
+    const goToBot = () => {
+      window.Telegram.WebApp.openTelegramLink("https://t.me/FastWishlistBot");
+    };
+    window.Telegram.WebApp.requestWriteAccess(goToBot);
+  };
+
+
   let isOwner = data.wishlist.wishlist.is_my_wishlist;
 </script>
 
@@ -101,21 +109,25 @@
           </div>
         </a>
         <button class="no-fill-button disabled-btn-color">
-          <!-- <svg width="20" height="20" viewBox="0 0 24 24">
-            <path
-              d="M8.43 19.78a1 1 0 0 1-.7-.29l-6.44-6.43a1 1 0 0 1 1.42-1.41l5.72 5.72L21.29 4.51a1 1 0 0 1 1.42 0 1 1 0 0 1 0 1.41L9.14 19.49a1 1 0 0 1-.71.29z"
-            />
-          </svg> -->
-
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            height="24"
-            viewBox="0 -960 960 960"
-            width="24"
-            ><path
-              d="M480-80q-139-35-229.5-159.5T160-516v-244l320-120 320 120v244q0 152-90.5 276.5T480-80Zm0-84q104-33 172-132t68-220v-189l-240-90-240 90v189q0 121 68 220t172 132Zm0-316Z"
-            />
-          </svg>
+          {#if item.is_booked }
+            {#if item.is_booked_by_current_user }
+              <svg width="20" height="20" viewBox="0 0 24 24">
+                <path
+                  d="M8.43 19.78a1 1 0 0 1-.7-.29l-6.44-6.43a1 1 0 0 1 1.42-1.41l5.72 5.72L21.29 4.51a1 1 0 0 1 1.42 0 1 1 0 0 1 0 1.41L9.14 19.49a1 1 0 0 1-.71.29z"
+                />
+              </svg>
+            {:else}
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="24"
+                viewBox="0 -960 960 960"
+                width="24"
+                ><path
+                  d="M480-80q-139-35-229.5-159.5T160-516v-244l320-120 320 120v244q0 152-90.5 276.5T480-80Zm0-84q104-33 172-132t68-220v-189l-240-90-240 90v189q0 121 68 220t172 132Zm0-316Z"
+                />
+              </svg>
+            {/if}
+          {/if}
         </button>
       </div>
     {/each}
@@ -123,6 +135,8 @@
     <p>No items in wishlist</p>
   {/if}
 </section>
+
+<button on:click={initNewMember}>Create My Wishlist</button>
 
 <style>
   .top {
