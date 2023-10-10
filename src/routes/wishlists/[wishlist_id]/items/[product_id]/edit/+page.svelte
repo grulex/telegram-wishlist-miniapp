@@ -122,16 +122,6 @@
       <input readonly={loading} name="title" placeholder={item.product.title} />
     </label>
 
-    <!-- <label class="hint-text">
-      <p>Price from</p>
-      <input
-        type="number"
-        readonly={loading}
-        name="price_from"
-        placeholder={item.product.price_from}
-      />
-    </label> -->
-
     <label class="hint-text">
       <p>URL</p>
       <input readonly={loading} name="url" value={item.product.url} />

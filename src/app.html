@@ -52,7 +52,7 @@
     			cursor: pointer;
   			}
 			h1 {
-			    font-size: 32px;
+			    font-size: 28px;
  			    color: var(--tg-theme-text-color);
 				word-break: break-word;
 				line-height: 1;
@@ -130,6 +130,12 @@
 				-webkit-mask: radial-gradient(farthest-side,#0000 calc(100% - 5px),#000 0);
 				mask: radial-gradient(farthest-side,#0000 calc(100% - 5px),#000 0);
 				animation:s3 1s infinite linear;
+			}
+			input, textarea{
+				border: 1px solid var(--tg-theme-button-color);
+			}
+			input:active, input:focus, textarea:active, textarea:focus{
+				border: 1px solid var(--tg-theme-link-color);
 			}
 			@keyframes s3 {to{transform: rotate(1turn)}}
 		</style>

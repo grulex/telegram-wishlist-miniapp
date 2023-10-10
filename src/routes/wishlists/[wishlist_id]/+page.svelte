@@ -114,9 +114,6 @@
             <div class="item-text">
               <p class="title-item">{item.product.title}</p>
               <p class="description-item">{item.product.description}</p>
-              <!-- <p class="price-item">
-              ${item.product.price_from.number}
-            </p> -->
             </div>
           </a>
           <button class="no-fill-button disabled-btn-color">
