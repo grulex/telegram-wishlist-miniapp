@@ -1,6 +1,6 @@
 <script>
   import { onMount } from "svelte";
-  import { goto as gotoRoute } from "$app/navigation";
+  import { goto as gotoRoute, invalidateAll } from "$app/navigation";
 
   /** @type {import('./$types').PageData} */
   export let data;
@@ -158,9 +158,9 @@
     <span>
       Booking {item.is_booking_available ? "is available" : "is not available"}
     </span>
-    {#if product.price_from.number !== null}
+    <!-- {#if product.price_from.number !== null}
       <span>${product.price_from.number}</span>
-    {/if}
+    {/if} -->
   </p>
   <div class="btn-block" />
 </section>
@@ -235,6 +235,7 @@
   .description {
     color: var(--tg-theme-text-color);
     margin: 0;
+    line-height: 1.3;
   }
   .btn-block {
     display: flex;
