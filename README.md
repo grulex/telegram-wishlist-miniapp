@@ -52,7 +52,7 @@ Set this url as `TG_MINIAPP_URL` in the `.env` file and restart application.
 
 More info about Mini Apps here: [Telegram Mini Apps](https://core.telegram.org/bots/webapps)
 
-## Building
+## Building for production
 
 To create a production version of your app:
 
