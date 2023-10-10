@@ -54,14 +54,17 @@ Set this url as `TG_MINIAPP_URL` in the `.env` file and restart application.
 
 More info about Mini Apps here: [Telegram Mini Apps](https://core.telegram.org/bots/webapps)
 
-## Building for production
+## Docker image for production
 
-To create a production version of your app:
-
+Building image:
 ```bash
-npm run build
+docker build -t telegram-wishlist-frontend .
 ```
 
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+Starting app on port 3001:
+```bash
+docker run -d --init --restart=always -p 3001:3000 \
+    -e BACKEND_HOST='{YOUR_BACKEND_HOST}' \
+    -e TG_MINIAPP_URL='{YOUT_TG_MINIAPP_URL}' \
+    telegram-wishlist-frontend
+```
