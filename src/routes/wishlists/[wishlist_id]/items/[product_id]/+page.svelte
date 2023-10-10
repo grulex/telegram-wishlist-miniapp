@@ -27,7 +27,6 @@
   let bookInProgress = false;
   let unbookInProgress = false;
   let copyToMyWishlistInProgress = false;
-  let copyToMyWishlistSuccess = false;
 
   const remove = async () => {
     const button = { id: "yes", type: "destructive", text: "Yes" };
@@ -106,10 +105,10 @@
     copyToMyWishlistInProgress = true;
     const response = await fetch("", {
       method: "POST",
-      body: JSON.stringify({ action: "copy" }),
+      body: JSON.stringify({ action: "copy", target_wishlist_id: data.profile.default_wishlist.id }),
     });
     if (response.status === 200) {
-      copyToMyWishlistSuccess = true;
+      window.Telegram.WebApp.showAlert("Item copied to your wishlist!");
       await invalidateAll();
     }
     copyToMyWishlistInProgress = false;

@@ -44,7 +44,8 @@ export async function POST({ params, cookies, request }) {
         }
         return new Response('Unbooked', { status: 200 });
     } else if (rJson.action === 'copy') {
-        let req = await fetch(env.BACKEND_HOST+`api/wishlists/${params.wishlist_id}/items`, {
+        const targetWishlistId = rJson.target_wishlist_id
+        let req = await fetch(env.BACKEND_HOST+`api/wishlists/${targetWishlistId}/items`, {
             headers: {
                 'authorization': cookies.get('tg_init_data'),
                 'Content-Type': 'application/json',
