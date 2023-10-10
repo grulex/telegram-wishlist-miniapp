@@ -5,6 +5,8 @@
     export let data;
 
     onMount(() => {
+        window.Telegram.WebApp.expand();
+        window.Telegram.WebApp.ready();
         const tgApp = window.Telegram.WebApp;
         const wishlistId = tgApp.initDataUnsafe.start_param;
         if (wishlistId) {

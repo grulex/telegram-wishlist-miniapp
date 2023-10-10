@@ -1,5 +1,6 @@
 <script>
   import { goto as gotoRoute } from "$app/navigation";
+  import { onMount } from "svelte";
 
   export let data;
   console.log(data);
@@ -22,12 +23,21 @@
     );
     window.Telegram.WebApp.showAlert("Link copied to clipboard!");
   };
-  const initNewMember = () => {
-    const goToBot = () => {
-      window.Telegram.WebApp.openTelegramLink("https://t.me/FastWishlistBot");
+  const goMyWishlist = () => {
+    const goToBot = (allowed) => {
+      if (allowed) {
+        window.Telegram.WebApp.openTelegramLink("https://t.me/FastWishlistBot");
+      }
     };
     window.Telegram.WebApp.requestWriteAccess(goToBot);
   };
+
+  let isMessagesAllowed = false
+  onMount(() => {
+    if (window.Telegram.WebApp.initDataUnsafe.user.allows_write_to_pm) {
+      isMessagesAllowed = true
+    }
+  })
 
   let isOwner = data.wishlist.wishlist.is_my_wishlist;
 
@@ -144,9 +154,17 @@
     {/if}
   </section>
   <div class="decot-dark flex-shrink" />
-  <button class="no-fill-button create-button" on:click={initNewMember}
-    >Create My Wishlist</button
-  >
+  {#if !isOwner }
+    {#if isMessagesAllowed }
+      <button class="no-fill-button create-button" on:click={goMyWishlist}>
+        Go to my Wishlist
+      </button>
+    {:else}
+      <button class="no-fill-button create-button" on:click={goMyWishlist}>
+        Create your Wishlist!
+      </button>
+    {/if}
+  {/if}
 </div>
 
 <style>
