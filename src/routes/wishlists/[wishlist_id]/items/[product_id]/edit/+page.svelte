@@ -119,12 +119,22 @@
 
     <label class="hint-text">
       <p>Title</p>
-      <input readonly={loading} name="title" placeholder={item.product.title} />
+      <input
+        required
+        readonly={loading}
+        name="title"
+        placeholder={item.product.title}
+      />
     </label>
 
     <label class="hint-text">
       <p>URL</p>
-      <input readonly={loading} name="url" value={item.product.url} />
+      <input
+        readonly={loading}
+        name="url"
+        type="url"
+        value={item.product.url}
+      />
     </label>
 
     <label class="hint-text">
@@ -161,19 +171,6 @@
   label {
     display: block;
     margin-bottom: 1rem;
-  }
-  input,
-  textarea {
-    padding: 0.3em 0.5em;
-    border-radius: 8px;
-    width: 100%;
-    border: none;
-    font-size: 1rem;
-    border: 1px solid var(--tg-theme-button-color);
-  }
-  textarea {
-    resize: none;
-    min-height: 4.2em;
   }
   p {
     margin: 0 0 0.2rem;
