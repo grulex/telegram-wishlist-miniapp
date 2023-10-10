@@ -261,11 +261,6 @@
     display: flex;
     justify-content: space-between;
   }
-  .description {
-    color: var(--tg-theme-text-color);
-    margin: 0;
-    line-height: 1.3;
-  }
   .btn-block {
     display: flex;
     justify-content: flex-end;
