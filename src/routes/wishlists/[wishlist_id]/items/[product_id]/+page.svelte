@@ -126,7 +126,6 @@
 
   let item = data.itemsByProductId[data.productId];
   let product = item.product;
-  console.log(item);
   let isOwner = data.wishlist.wishlist.is_my_wishlist;
   let isBookedByCurrentUser = item.is_booked_by_current_user;
 </script>

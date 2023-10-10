@@ -4,7 +4,6 @@
 
   import { onMount } from "svelte";
   export let data;
-  console.log(data);
 
   let mainButton = false;
   let loading = false;
