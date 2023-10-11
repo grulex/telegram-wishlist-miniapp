@@ -148,14 +148,15 @@
     </label>
 
     <label class="label-checkbox">
+      <span class="hint-text">Booking available?</span>
       <input
-        class="checkbox"
+        class="checkbox no-visible"
         type="checkbox"
         readonly={loading}
         name="is_booking_available"
         checked={item.is_booking_available}
       />
-      <span class="hint-text">Booking available</span>
+      <div class="switch" />
     </label>
 
     {#if !mainButton}
@@ -179,16 +180,45 @@
     align-items: center;
   }
   .label-checkbox {
+    position: relative;
+    font-size: 1rem;
+    position: relative;
     display: flex;
-    cursor: pointer;
+    align-items: center;
+    gap: 1em;
   }
-  .checkbox {
-    width: 1em;
-    height: 1em;
-    margin-right: 0.3em;
-    background-color: var(--tg-theme-button-color);
-  }
+
   .checkbox:checked {
     background-color: var(--tg-theme-button-color);
+  }
+  .no-visible {
+    opacity: 0;
+    position: absolute;
+  }
+  .switch {
+    position: relative;
+    display: inline-block;
+    height: 1.5em;
+    width: 3em;
+    background-color: var(--tg-theme-hint-color);
+    border-radius: 999px;
+    top: -50%;
+    transition: 0.2s;
+  }
+  .switch::before {
+    content: "";
+    position: absolute;
+    margin: 0.15em;
+    height: 1.2em;
+    width: 1.2em;
+    border-radius: 999px;
+    background-color: var(--tg-theme-button-text-color);
+    transition: 0.2s;
+  }
+  .checkbox:checked + .switch {
+    background-color: var(--tg-theme-button-color);
+  }
+  .checkbox:checked + .switch::before {
+    transform: translateX(1.5em);
   }
 </style>

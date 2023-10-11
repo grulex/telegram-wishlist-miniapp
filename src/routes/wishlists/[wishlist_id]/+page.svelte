@@ -8,6 +8,7 @@
 
   export let data;
   console.log(data);
+  console.log(data.wishlist.wishlist.avatar.link);
 
   let newWish = () =>
     gotoRoute(`/wishlists/${data.wishlist.wishlist.id}/items/new/edit`);
@@ -55,6 +56,11 @@
 <div class="flex-column">
   <section>
     <div class="top">
+      {#if data.wishlist.wishlist.avatar.link}
+        <div class="img br-50">
+          <img alt="avatar user" src={data.wishlist.wishlist.avatar.link} />
+        </div>
+      {/if}
       <div>
         <h1>{data.wishlist.wishlist.title}</h1>
         {#if data.wishlist.wishlist.description !== ""}
@@ -159,6 +165,7 @@
 
 <style>
   .top {
+    gap: 16px;
     display: flex;
     align-items: start;
     justify-content: space-between;
@@ -253,6 +260,9 @@
   }
   .flex-shrink {
     flex: 1 0 100%;
+  }
+  .br-50 {
+    border-radius: 50%;
   }
   p {
     max-height: 2.3em;
