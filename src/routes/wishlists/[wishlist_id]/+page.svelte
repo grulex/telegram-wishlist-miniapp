@@ -24,6 +24,10 @@
     window.Telegram.WebApp.showAlert("Link copied to clipboard!");
   };
   const goMyWishlist = () => {
+    if (window.Telegram.WebApp.initDataUnsafe.user?.allows_write_to_pm) {
+      gotoRoute(`/wishlists/${data.profile.default_wishlist.id}`);
+      return
+    }
     const goToBot = (allowed) => {
       if (allowed) {
         window.Telegram.WebApp.openTelegramLink("https://t.me/FastWishlistBot");
