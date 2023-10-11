@@ -34,7 +34,7 @@
 
   let isMessagesAllowed = false
   onMount(() => {
-    if (window.Telegram.WebApp.initDataUnsafe.user.allows_write_to_pm) {
+    if (window.Telegram.WebApp.initDataUnsafe.user?.allows_write_to_pm) {
       isMessagesAllowed = true
     }
   })
