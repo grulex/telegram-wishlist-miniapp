@@ -10,6 +10,11 @@
   let isOwner = data.wishlist.wishlist.is_my_wishlist;
   let isBookedByCurrentUser = item.is_booked_by_current_user;
 
+  const goBack = () => {
+    window.Telegram.WebApp.BackButton.hide();
+    gotoRoute("/wishlists/" + data.wishlist.wishlist.id);
+  };
+
   onMount(() => {
     const isTgInitialized = window.Telegram.WebApp.initData !== "";
     if (isTgInitialized) {
@@ -18,12 +23,8 @@
       if (window.backButtonFunction) {
         backButton.offClick(window.backButtonFunction);
       }
-      const back = () => {
-        backButton.hide();
-        gotoRoute("/wishlists/" + data.wishlist.wishlist.id);
-      };
-      backButton.onClick(back);
-      window.backButtonFunction = back;
+      backButton.onClick(goBack);
+      window.backButtonFunction = goBack;
       backButton.show();
     }
   });
@@ -42,7 +43,7 @@
         const response = await fetch("", { method: "DELETE" });
         if (response.status === 200) {
           await invalidateAll();
-          await gotoRoute("/wishlists/" + data.wishlist.wishlist.id);
+          goBack();
         }
         removeInProgress = false;
       }
@@ -67,7 +68,7 @@
         });
         if (response.status === 200) {
           await invalidateAll();
-          await gotoRoute("/wishlists/" + data.wishlist.wishlist.id);
+          goBack();
         }
         bookInProgress = false;
       }
@@ -92,7 +93,7 @@
         });
         if (response.status === 200) {
           await invalidateAll();
-          await gotoRoute("/wishlists/" + data.wishlist.wishlist.id);
+          goBack();
         }
         unbookInProgress = false;
       }
