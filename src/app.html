@@ -133,14 +133,14 @@
 			}
 			input,
 			textarea {
+			    width: 100%;
 				background-color: var(--tg-theme-secondary-bg-color);
 			    padding: 0.4em 0.5em;
-			    border-radius: 8px;
-			    width: 100%;
-			    font-size: 1rem;
+				outline: none;
 				border: 1px solid var(--tg-theme-secondary-bg-color);
+			    border-radius: 8px;
+			    font-size: 1rem;
 				color: var(--tg-theme-text-color);
-				font-size: 1rem;
 			}
 			input::placeholder,
 			textarea::placeholder {
@@ -150,7 +150,8 @@
 				resize: none;
     			min-height: 4.2em;
 			}
-			input:active, input:focus-visible, input:hover, textarea:active, textarea:focus, textarea:hover{
+			input:focus, textarea:focus{
+				outline: none;
 				border: 1px solid var(--tg-theme-link-color);
 			}
 			@keyframes s3 {to{transform: rotate(1turn)}}

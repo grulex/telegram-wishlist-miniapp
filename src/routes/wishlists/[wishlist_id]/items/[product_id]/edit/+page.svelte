@@ -186,9 +186,9 @@
     width: 1em;
     height: 1em;
     margin-right: 0.3em;
-    color: var(--tg-theme-button-color);
+    background-color: var(--tg-theme-button-color);
   }
   .checkbox:checked {
-    color: var(--tg-theme-button-color);
+    background-color: var(--tg-theme-button-color);
   }
 </style>
