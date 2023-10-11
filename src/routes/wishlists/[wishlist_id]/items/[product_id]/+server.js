@@ -55,6 +55,7 @@ export async function POST({ params, cookies, request }) {
                 product: {
                     id: params.product_id,
                 },
+                is_booking_available: rJson.is_booking_available,
             }),
         });
         let status = req.status

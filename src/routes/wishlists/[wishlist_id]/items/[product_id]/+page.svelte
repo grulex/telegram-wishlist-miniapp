@@ -5,6 +5,11 @@
   /** @type {import('./$types').PageData} */
   export let data;
 
+  let item = data.itemsByProductId[data.productId];
+  let product = item.product;
+  let isOwner = data.wishlist.wishlist.is_my_wishlist;
+  let isBookedByCurrentUser = item.is_booked_by_current_user;
+
   onMount(() => {
     const isTgInitialized = window.Telegram.WebApp.initData !== "";
     if (isTgInitialized) {
@@ -105,7 +110,11 @@
     copyToMyWishlistInProgress = true;
     const response = await fetch("", {
       method: "POST",
-      body: JSON.stringify({ action: "copy", target_wishlist_id: data.profile.default_wishlist.id }),
+      body: JSON.stringify({
+        action: "copy",
+        target_wishlist_id: data.profile.default_wishlist.id,
+        is_booking_available: item.is_booking_available,
+      }),
     });
     if (response.status === 200) {
       window.Telegram.WebApp.showAlert("Item copied to your wishlist!");
@@ -123,10 +132,6 @@
     await window.Telegram.WebApp.showPopup(params, callback);
   };
 
-  let item = data.itemsByProductId[data.productId];
-  let product = item.product;
-  let isOwner = data.wishlist.wishlist.is_my_wishlist;
-  let isBookedByCurrentUser = item.is_booked_by_current_user;
   const descriptionLines = product.description.split(/\n|\r\n/g).map((v, i) => {
     return { text: v, br: "<br>" };
   });
