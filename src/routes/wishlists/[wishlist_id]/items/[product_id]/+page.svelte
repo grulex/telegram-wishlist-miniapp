@@ -1,6 +1,10 @@
 <script>
   import { onMount } from "svelte";
   import { goto as gotoRoute, invalidateAll } from "$app/navigation";
+  import RemoveSvg from "$lib/svg/RemoveSvg.svelte";
+  import UnbookSvg from "$lib/svg/UnbookSvg.svelte";
+  import BookSvg from "$lib/svg/BookSvg.svelte";
+  import CopySvg from "$lib/svg/CopySvg.svelte";
 
   /** @type {import('./$types').PageData} */
   export let data;
@@ -164,49 +168,33 @@
 
   <p class="detale">
     <span>
-      {#if item.is_booked }
+      {#if item.is_booked}
         Already booked by {isBookedByCurrentUser ? "you" : "another user"}
       {:else}
-        Booking {item.is_booking_available ? "is available" : "is not available"}
+        Booking {item.is_booking_available
+          ? "is available"
+          : "is not available"}
       {/if}
     </span>
-    <!-- {#if product.price_from.number !== null}
-      <span>${product.price_from.number}</span>
-    {/if} -->
   </p>
   <div class="btn-block" />
 </section>
 
 <section class="share-section">
-  {#if item.is_booking_available }
-    {#if isBookedByCurrentUser }
+  {#if item.is_booking_available}
+    {#if isBookedByCurrentUser}
       <button class="no-fill-button flex-end btn-text" on:click={unbook}>
         {#if unbookInProgress === false}
-          <svg height="32" viewBox="0 -960 960 960" width="32"
-          ><path
-                  d="M480-80q-139-35-229.5-159.5T160-516v-244l320-120 320 120v244q0 152-90.5 276.5T480-80Zm0-84q104-33 172-132t68-220v-189l-240-90-240 90v189q0 121 68 220t172 132Zm0-316Z"
-          />
-          </svg>
+          <UnbookSvg />
         {:else}
           <div class="custom-loader" />
         {/if}
         Unbook
       </button>
-    {:else if !item.is_booked }
+    {:else if !item.is_booked}
       <button class="no-fill-button flex-end btn-text" on:click={book}>
         {#if bookInProgress === false}
-          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-            <path
-                    fill-rule="evenodd"
-                    clip-rule="evenodd"
-                    d="M14.2506 2.41284C14.519 2.3099 14.8147 2.3099 15.083 2.41284L24.563 6.0498C25.0255 6.22722 25.3318 6.67941 25.3318 7.18457V15.6708C25.3318 19.8487 22.6281 23.1872 20.1873 25.3721C18.942 26.4869 17.7023 27.3582 16.7763 27.9503C16.312 28.2472 15.9234 28.4759 15.6482 28.6317C15.5105 28.7097 15.401 28.7696 15.3242 28.8108C15.2859 28.8314 15.2557 28.8474 15.2343 28.8586L15.2088 28.8719L15.2011 28.8758L15.1976 28.8776C15.1972 28.8778 15.1969 28.878 14.6668 27.794C14.1368 28.878 14.1364 28.8778 14.136 28.8776L14.1325 28.8758L14.1249 28.8719L14.0994 28.8586C14.078 28.8474 14.0478 28.8314 14.0094 28.8108C13.9327 28.7696 13.8231 28.7097 13.6855 28.6317C13.4102 28.4759 13.0217 28.2472 12.5574 27.9503C11.6314 27.3582 10.3917 26.4869 9.14638 25.3721C6.70553 23.1872 4.00183 19.8487 4.00183 15.6708V7.18457C4.00183 6.67941 4.30819 6.22722 4.77065 6.0498L14.2506 2.41284ZM14.6668 27.794L14.136 28.8776C14.4697 29.0483 14.864 29.0483 15.1976 28.8776L14.6668 27.794ZM14.6668 26.4156C14.8939 26.2839 15.1843 26.1096 15.5199 25.895C16.3714 25.3506 17.5017 24.555 18.6264 23.5481C20.9255 21.49 22.9618 18.7668 22.9618 15.6708V8.02439L14.6668 4.84205L6.37183 8.02439V15.6708C6.37183 18.7668 8.40813 21.49 10.7073 23.5481C11.832 24.555 12.9623 25.3506 13.8138 25.895C14.1494 26.1096 14.4398 26.2839 14.6668 26.4156Z"
-            />
-            <path
-                    fill-rule="evenodd"
-                    clip-rule="evenodd"
-                    d="M19.746 12.7319C20.178 13.1639 20.178 13.8643 19.746 14.2963L14.7743 19.268C14.3423 19.7 13.6419 19.7 13.2099 19.268L10.724 16.7821C10.292 16.3502 10.292 15.6497 10.724 15.2177C11.156 14.7857 11.8564 14.7857 12.2884 15.2177L13.9921 16.9214L18.1816 12.7319C18.6136 12.2999 19.314 12.2999 19.746 12.7319Z"
-            />
-          </svg>
+          <BookSvg />
         {:else}
           <div class="custom-loader" />
         {/if}
@@ -214,17 +202,10 @@
       </button>
     {/if}
   {/if}
-  {#if isOwner }
+  {#if isOwner}
     <button class="no-fill-button flex-end btn-text" on:click={remove}>
       {#if removeInProgress === false}
-        <svg width="32" height="32" viewBox="0 0 24 24"
-        ><path
-                d="M19 7a1 1 0 0 0-1 1v11.191A1.92 1.92 0 0 1 15.99 21H8.01A1.92 1.92 0 0 1 6 19.191V8a1 1 0 0 0-2 0v11.191A3.918 3.918 0 0 0 8.01 23h7.98A3.918 3.918 0 0 0 20 19.191V8a1 1 0 0 0-1-1ZM20 4h-4V2a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v2H4a1 1 0 0 0 0 2h16a1 1 0 0 0 0-2ZM10 4V3h4v1Z"
-        />
-          <path
-                  d="M11 17v-7a1 1 0 0 0-2 0v7a1 1 0 0 0 2 0ZM15 17v-7a1 1 0 0 0-2 0v7a1 1 0 0 0 2 0Z"
-          />
-        </svg>
+        <RemoveSvg />
       {:else}
         <div class="custom-loader" />
       {/if}
@@ -232,15 +213,11 @@
     </button>
   {:else}
     <button
-            class="no-fill-button flex-end btn-text"
-            on:click={copyToMyWishlist}
+      class="no-fill-button flex-end btn-text"
+      on:click={copyToMyWishlist}
     >
       {#if copyToMyWishlistInProgress === false}
-        <svg width="32" height="32" viewBox="0 0 22 22">
-          <path
-                  d="M21 19H3a1 1 0 0 0 0 2h18a1 1 0 0 0 0-2zM12 2a1 1 0 0 0-1 1v10.59l-3.29-3.3a1 1 0 0 0-1.42 1.42l5 5a1 1 0 0 0 1.42 0l5-5a1 1 0 0 0-1.42-1.42L13 13.59V3a1 1 0 0 0-1-1z"
-          />
-        </svg>
+        <CopySvg />
       {:else}
         <div class="custom-loader" />
       {/if}

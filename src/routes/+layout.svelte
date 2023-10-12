@@ -2,16 +2,6 @@
   import { navigating } from "$app/stores";
   import DefaultTheme from "./DefaultTheme.svelte";
   import { onMount } from "svelte";
-  import {
-    CardPlaceholder,
-    ImagePlaceholder,
-    ListPlaceholder,
-    Skeleton,
-    TestimonialPlaceholder,
-    TextPlaceholder,
-    VideoPlaceholder,
-    WidgetPlaceholder,
-  } from "flowbite-svelte";
 
   let isOpenedByTelegram = false;
   onMount(() => {
@@ -21,9 +11,7 @@
 
 <main>
   {#if $navigating}
-    <section>
-      <ListPlaceholder />
-    </section>
+    <section>Loading...</section>
   {:else}
     <slot />
   {/if}

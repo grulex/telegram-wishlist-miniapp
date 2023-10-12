@@ -125,18 +125,6 @@
     display: block;
     margin-bottom: 1rem;
   }
-  input,
-  textarea {
-    padding: 0.3em 0.5em;
-    border-radius: 8px;
-    width: 100%;
-    border: none;
-    font-size: 1rem;
-  }
-  textarea {
-    resize: none;
-    min-height: 4.2em;
-  }
   p {
     margin: 0 0 0.2rem;
   }

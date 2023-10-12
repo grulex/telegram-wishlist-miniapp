@@ -119,22 +119,22 @@
 
     <label class="hint-text">
       <p>Title</p>
-      <input readonly={loading} name="title" placeholder={item.product.title} />
-    </label>
-
-    <!-- <label class="hint-text">
-      <p>Price from</p>
       <input
-        type="number"
+        required
         readonly={loading}
-        name="price_from"
-        placeholder={item.product.price_from}
+        name="title"
+        placeholder={item.product.title}
       />
-    </label> -->
+    </label>
 
     <label class="hint-text">
       <p>URL</p>
-      <input readonly={loading} name="url" value={item.product.url} />
+      <input
+        readonly={loading}
+        name="url"
+        type="url"
+        value={item.product.url}
+      />
     </label>
 
     <label class="hint-text">
@@ -148,14 +148,15 @@
     </label>
 
     <label class="label-checkbox">
+      <span class="hint-text">Booking available?</span>
       <input
-        class="checkbox"
+        class="checkbox no-visible"
         type="checkbox"
         readonly={loading}
         name="is_booking_available"
         checked={item.is_booking_available}
       />
-      <span class="hint-text">Booking available</span>
+      <div class="switch" />
     </label>
 
     {#if !mainButton}
@@ -172,18 +173,6 @@
     display: block;
     margin-bottom: 1rem;
   }
-  input,
-  textarea {
-    padding: 0.3em 0.5em;
-    border-radius: 8px;
-    width: 100%;
-    border: none;
-    font-size: 1rem;
-  }
-  textarea {
-    resize: none;
-    min-height: 4.2em;
-  }
   p {
     margin: 0 0 0.2rem;
   }
@@ -191,16 +180,45 @@
     align-items: center;
   }
   .label-checkbox {
+    position: relative;
+    font-size: 1rem;
+    position: relative;
     display: flex;
-    cursor: pointer;
+    align-items: center;
+    gap: 1em;
   }
-  .checkbox {
-    width: 1em;
-    height: 1em;
-    margin-right: 0.3em;
-    color: var(--tg-theme-button-color);
-  }
+
   .checkbox:checked {
-    color: var(--tg-theme-button-color);
+    background-color: var(--tg-theme-button-color);
+  }
+  .no-visible {
+    opacity: 0;
+    position: absolute;
+  }
+  .switch {
+    position: relative;
+    display: inline-block;
+    height: 1.5em;
+    width: 3em;
+    background-color: var(--tg-theme-hint-color);
+    border-radius: 999px;
+    top: -50%;
+    transition: 0.2s;
+  }
+  .switch::before {
+    content: "";
+    position: absolute;
+    margin: 0.15em;
+    height: 1.2em;
+    width: 1.2em;
+    border-radius: 999px;
+    background-color: var(--tg-theme-button-text-color);
+    transition: 0.2s;
+  }
+  .checkbox:checked + .switch {
+    background-color: var(--tg-theme-button-color);
+  }
+  .checkbox:checked + .switch::before {
+    transform: translateX(1.5em);
   }
 </style>
