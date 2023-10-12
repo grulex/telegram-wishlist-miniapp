@@ -8,7 +8,6 @@
 
   export let data;
   console.log(data);
-  console.log(data.wishlist.wishlist.avatar.link);
 
   let newWish = () =>
     gotoRoute(`/wishlists/${data.wishlist.wishlist.id}/items/new/edit`);
@@ -60,7 +59,7 @@
 <div class="flex-column">
   <section>
     <div class="top">
-      {#if data.wishlist.wishlist.avatar.link}
+      {#if data.wishlist.wishlist.avatar?.link}
         <div class="img br-50">
           <img alt="avatar user" src={data.wishlist.wishlist.avatar.link} />
         </div>
