@@ -44,7 +44,10 @@ To do this, you need to find the father of all bots, the bot BotFather and use t
 then go through the proposed process, specifying all the necessary data.
 Configure menu buttons for your bot in the bot settings
 (`/mybots`-> `your bot name` -> `Bot Settings` -> `Menu Button`)
-as url from ngrok.
+as url from ngrok. 
+
+Also, you need enable **inline mode** (`/mybots`-> `your bot name` -> `Bot Settings` -> `Inline Mode`) 
+— it's important for function "**Share**".
 
 When the bot is created, it is required then to use the command `/newapp` 
 and again go through the procedure of creating another entity - the Telegram Mini Apps application, 

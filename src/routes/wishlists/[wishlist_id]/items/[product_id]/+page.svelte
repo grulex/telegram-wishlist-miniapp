@@ -39,7 +39,7 @@
   let copyToMyWishlistInProgress = false;
 
   const remove = async () => {
-    const button = { id: "yes", type: "destructive", text: "Yes" };
+    const button = { id: "yes", type: "destructive", text: "Remove" };
 
     const callback = async (id) => {
       if (id === "yes") {
@@ -61,7 +61,7 @@
     );
   };
   const book = async () => {
-    const button = { id: "yes", type: "ok", text: "Yes!" };
+    const button = { id: "yes", type: "default", text: "Book!" };
 
     const callback = async (id) => {
       if (id === "yes") {
@@ -86,7 +86,7 @@
     );
   };
   const unbook = async () => {
-    const button = { id: "yes", type: "ok", text: "Yes" };
+    const button = { id: "yes", type: "destructive", text: "Unbook" };
 
     const callback = async (id) => {
       if (id === "yes") {
