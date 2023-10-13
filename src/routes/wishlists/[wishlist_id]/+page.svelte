@@ -84,7 +84,7 @@
   <section class="share-section">
     <button class="no-fill-button btn-text" on:click={copyLink}>
       <Copy1Svg />
-      Copy
+      Copy Link
     </button>
     <button class="no-fill-button btn-text" on:click={share}>
       <ShareSvg />
