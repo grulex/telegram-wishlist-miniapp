@@ -128,4 +128,7 @@
   p {
     margin: 0 0 0.2rem;
   }
+  label p {
+    margin-left: 4px;
+  }
 </style>
