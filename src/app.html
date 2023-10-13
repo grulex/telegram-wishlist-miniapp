@@ -28,7 +28,6 @@
 				background-color: var(--tg-theme-bg-color);
 				color: var(--tg-theme-text-color);
 				font-family: sans-serif;
-				margin: 0;
 			}
 			section {
     			padding: 16px 20px;
@@ -45,18 +44,16 @@
   			}
 			h1 {
 			    font-size: 28px;
- 			    color: var(--tg-theme-text-color);
 				word-break: break-word;
 				line-height: 1;
+				margin-bottom: .5rem;
    			}
   			h2 {
   				font-size: 24px;
-  				color: var(--tg-theme-text-color);
 				word-break: break-word;
   			}
   			p {
 				word-break: break-word;
-  			    margin-top: 1rem;
   			    color: var(--tg-theme-hint-color);
   			}
 			.img {
@@ -83,6 +80,22 @@
 			.no-fill-button:active path {
     			fill: var(--tg-theme-link-color);
   			}
+			.img path {
+   				fill: var(--tg-theme-hint-color);
+ 			}
+			.border-button path {
+   				fill: var(--tg-theme-button-color);
+			}
+			.border-button svg {
+   				width: 16px;
+				height: 16px;
+			}
+			.disabled-btn-color path {
+				fill: var(--tg-theme-hint-color);
+			}
+			.disabled-btn-color:active path {
+				fill: var(--tg-theme-hint-color);
+			}
 			.action-button {
 				background-color: var(--tg-theme-button-color);
 				color: var(--tg-theme-button-text-color);
@@ -106,7 +119,7 @@
 				flex: 1 1 50%;
 				padding: 16px 0;
 			}
-			.btn-text{
+			.btn-text {
 				display: flex;
 				flex-direction: column;
 				align-items: center;
@@ -119,10 +132,11 @@
 				height:32px;
 				border-radius:50%;
 				background:conic-gradient(#00000000 20%,var(--tg-theme-button-color));
-				-webkit-mask: radial-gradient(farthest-side,#0000 calc(100% - 5px),#000 0);
 				mask: radial-gradient(farthest-side,#0000 calc(100% - 5px),#000 0);
+				-webkit-mask: radial-gradient(farthest-side,#0000 calc(100% - 5px),#000 0);
 				animation:s3 1s infinite linear;
 			}
+			@keyframes s3 {to{transform: rotate(1turn)}}
 			input,
 			textarea {
 			    width: 100%;
@@ -147,7 +161,6 @@
 				outline: none;
 				border: 1px solid var(--tg-theme-link-color);
 			}
-			@keyframes s3 {to{transform: rotate(1turn)}}
 		</style>
 		%sveltekit.head%
 	</head>
