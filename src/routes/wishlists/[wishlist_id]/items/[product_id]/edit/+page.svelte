@@ -182,10 +182,10 @@
   .label-checkbox {
     position: relative;
     font-size: 1rem;
-    position: relative;
     display: flex;
     align-items: center;
     gap: 1em;
+    -webkit-tap-highlight-color: transparent;
   }
 
   .checkbox:checked {

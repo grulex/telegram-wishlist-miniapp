@@ -180,9 +180,6 @@
   .content-center {
     justify-content: center;
   }
-  .content-end {
-    justify-content: end;
-  }
   .header p {
     max-height: none;
   }
