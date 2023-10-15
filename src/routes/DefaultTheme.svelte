@@ -8,7 +8,6 @@
     --tg-theme-link-color: #6ab3f3;
     --tg-theme-secondary-bg-color: #232e3c;
     --tg-theme-text-color: #f5f5f5;
-
     --tg-viewport-height: 496px;
     --tg-viewport-stable-height: 496px;
   }
