@@ -120,6 +120,7 @@
     <label class="hint-text">
       <p>Title</p>
       <input
+        maxlength="40"
         required
         readonly={loading}
         name="title"

@@ -94,6 +94,7 @@
     <label class="hint-text">
       <p>Title</p>
       <input
+        maxlength="30"
         readonly={loading}
         name="title"
         value={data.wishlist.wishlist.title}

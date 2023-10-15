@@ -12,7 +12,7 @@
 				return btoa(encode)
 			}
 
-			let tg = window.Telegram.WebApp.initData !== '' ? window.Telegram.WebApp.initData : '';
+			let tg = window.Telegram.WebApp.initData;
 			tg = base64encode(tg)
 			document.cookie = "tg_init_data="+tg;
 			Telegram.WebApp.setHeaderColor('bg_color');
@@ -23,14 +23,15 @@
 				box-sizing: border-box;
 				margin: 0;
 				padding: 0;
+				font-family: sans-serif;
+				-webkit-tap-highlight-color: transparent;
 			}
 			body {
 				background-color: var(--tg-theme-bg-color);
 				color: var(--tg-theme-text-color);
-				font-family: sans-serif;
 			}
 			section {
-    			padding: 16px 20px;
+    			padding: 0 20px 20px 20px;
    			 	background-color: var(--tg-theme-bg-color);
  			}
 			a {
@@ -40,16 +41,18 @@
     			min-width: 40px;
     			min-height: 40px;
     			border: none;
-    			cursor: pointer;
+				transition: color .2s;
   			}
+			button:active{
+				color: var(--tg-theme-link-color);
+			}
 			h1 {
-			    font-size: 28px;
+				margin-top: .3rem;
+			    font-size: 20px;
 				word-break: break-word;
-				line-height: 1;
-				margin-bottom: .5rem;
    			}
   			h2 {
-  				font-size: 24px;
+  				font-size: 20px;
 				word-break: break-word;
   			}
   			p {
@@ -72,13 +75,17 @@
   			}
 			.no-fill-button {
     			background-color: var(--tg-theme-bg-color);
+				transition: color .2s;
   			}
 			.no-fill-button path {
     			fill: var(--tg-theme-button-color);
-   				transition: 0.2s;
+				transition: fill .2s;
  			}
 			.no-fill-button:active path {
     			fill: var(--tg-theme-link-color);
+  			}
+			.no-fill-button:active {
+    			color: var(--tg-theme-link-color);
   			}
 			.img path {
    				fill: var(--tg-theme-hint-color);
@@ -114,9 +121,12 @@
     			background-color: var(--tg-theme-secondary-bg-color);
     			padding: 8px 8px;
 			}
+			.wrap{
+				flex-wrap: wrap;
+			}
 			.share-section > button {
 				border-radius: 8px;
-				flex: 1 1 50%;
+				flex: 1 1 auto;
 				padding: 16px 0;
 			}
 			.btn-text {
@@ -141,13 +151,12 @@
 			textarea {
 			    width: 100%;
 				background-color: var(--tg-theme-secondary-bg-color);
-			    padding: 0.4em 0.5em;
+			    padding: 0.5em 0.8em;
 				outline: none;
 				border: 1px solid var(--tg-theme-secondary-bg-color);
 			    border-radius: 8px;
 			    font-size: 1rem;
 				color: var(--tg-theme-text-color);
-				-webkit-tap-highlight-color: transparent;
 			}
 			input::placeholder,
 			textarea::placeholder {
