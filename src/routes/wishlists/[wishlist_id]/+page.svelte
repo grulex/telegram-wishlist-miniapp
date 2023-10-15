@@ -31,7 +31,7 @@
   const goMyWishlist = () => {
     if (window.Telegram.WebApp.initDataUnsafe.user?.allows_write_to_pm) {
       gotoRoute(`/wishlists/${data.profile.default_wishlist.id}`);
-      return
+      return;
     }
     const goToBot = (allowed) => {
       if (allowed) {
@@ -58,32 +58,23 @@
 </script>
 
 <div class="flex-column">
-  <section class="header">
+  <section class="header relative">
+    {#if isOwner}
+      <button class="edit-btn absolute" on:click={editWishlist}> Edit </button>
+    {/if}
     <div class="flex content-center">
       {#if data.wishlist.wishlist.avatar?.link}
         <div class="img br-50 wh-100">
           <img alt="avatar user" src={data.wishlist.wishlist.avatar.link} />
         </div>
-    {/if}
-    </div>
-    <div class="header-bottom">
-      <div class="flex content-between items-start">
-        <h1>{data.wishlist.wishlist.title}</h1>
-        {#if isOwner}
-          <button
-            class="no-fill-button flex content-center"
-            on:click={editWishlist}
-          >
-            <EditSvg />
-          </button>
-        {/if}
-      </div>
-      {#if data.wishlist.wishlist.description !== ""}
-        {#each descriptionLines as { text }}
-          <p>{text}</p>
-        {/each}
       {/if}
     </div>
+    <h1>{data.wishlist.wishlist.title}</h1>
+    {#if data.wishlist.wishlist.description !== ""}
+      {#each descriptionLines as { text }}
+        <p>{text}</p>
+      {/each}
+    {/if}
   </section>
 
   <section class="share-section">
@@ -97,7 +88,7 @@
     </button>
   </section>
 
-  <section>
+  <section class="wishes-section">
     <div class="flex content-between items-center mb-16">
       <h2>Wishes</h2>
       {#if isOwner}
@@ -108,38 +99,35 @@
     </div>
     {#if data.items.items.length !== 0}
       {#each data.items.items as item}
-        <div class="list-item">
-          <a
-            class="list-link"
-            href="/wishlists/{data.wishlist.wishlist.id}/items/{item.product
-              .id}"
-          >
-            <div class="img">
-              <PresentSvg />
+        <a
+          class="list-link list-item"
+          href="/wishlists/{data.wishlist.wishlist.id}/items/{item.product.id}"
+        >
+          <div class="img">
+            <PresentSvg />
+          </div>
+          <div class="item-text">
+            <div class="flex content-between gap-1">
+              <p class="title-item">{item.product.title}</p>
+              {#if item.is_booked}
+                <p class="booked-item">
+                  {#if item.is_booked_by_current_user}
+                    <span class="tg-theme-button-color">Booked by you</span>
+                  {:else}
+                    Booked
+                  {/if}
+                </p>
+              {/if}
             </div>
-            <div class="item-text">
-              <div class="flex content-between gap-1">
-                <p class="title-item">{item.product.title}</p>
-                {#if item.is_booked}
-                  <p class="booked-item">
-                    {#if item.is_booked_by_current_user}
-                      <span class="tg-theme-link-color">Booked by you</span>
-                    {:else}
-                      Booked
-                    {/if}
-                  </p>
-                {/if}
-              </div>
-              <p class="description-item">{item.product.description}</p>
-            </div>
-          </a>
-        </div>
+            <p class="description-item">{item.product.description}</p>
+          </div>
+        </a>
       {/each}
     {:else}
       <p class="bad-description">You don't have wishes yet</p>
       <button class="border-button" on:click={newWish}>
         <AddSvg />
-        Create the first item
+        Create the First Item
       </button>
     {/if}
   </section>
@@ -160,10 +148,35 @@
 </div>
 
 <style>
+  .relative {
+    position: relative;
+  }
+  .wishes-section {
+    padding-top: 10px;
+  }
+  .absolute {
+    position: absolute;
+    top: 0px;
+    right: 20px;
+    color: var(--tg-theme-button-color);
+    font-size: 16px;
+    padding: 1rem 0 24px 14px;
+  }
+  .edit-btn {
+    background-color: var(--tg-theme-bg-color);
+    min-height: 0;
+  }
+  .edit-btn:active {
+    color: var(--tg-theme-link-color);
+  }
   .header {
+    padding-top: 1rem;
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 0.3rem;
+  }
+  .header h1 {
+    text-align: center;
   }
   .flex {
     display: flex;
@@ -188,7 +201,7 @@
     height: 100px;
   }
   .mb-16 {
-    margin-bottom: 12px;
+    margin-bottom: 6px;
   }
   .gap-1 {
     gap: 1rem;
@@ -227,6 +240,9 @@
   } */
   .list-item:not(:last-child) {
     padding-bottom: 1rem;
+  }
+  .list-item:last-child {
+    padding-bottom: 0.5rem;
   }
   .item-text {
     width: 100%;
@@ -291,8 +307,8 @@
   .br-50 {
     border-radius: 50%;
   }
-  .tg-theme-link-color {
-    color: var(--tg-theme-link-color);
+  .tg-theme-button-color {
+    color: var(--tg-theme-button-color);
   }
   .border-button {
     display: flex;
