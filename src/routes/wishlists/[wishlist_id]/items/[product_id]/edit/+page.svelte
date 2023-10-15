@@ -221,4 +221,10 @@
   .checkbox:checked + .switch::before {
     transform: translateX(1.5em);
   }
+  label p {
+    margin-left: 4px;
+  }
+  label span {
+    margin-left: 4px;
+  }
 </style>
