@@ -239,9 +239,6 @@
     overflow: hidden;
     position: relative;
   }
-  .list-item p:not(:last-child) {
-    margin-bottom: 6px;
-  }
   .list-item .title-item {
     color: var(--tg-theme-text-color);
     max-height: 1.2em;
