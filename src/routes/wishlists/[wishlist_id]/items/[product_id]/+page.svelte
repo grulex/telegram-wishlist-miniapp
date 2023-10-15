@@ -204,7 +204,7 @@
     </button>
   {/if}
   {#if product.url !== ""}
-    <button
+    <a
       class="no-fill-button flex-end btn-text link-btn"
       href={product.url}
       target="_blank"
@@ -215,7 +215,7 @@
         />
       </svg>
       Go to Wish Link
-    </button>
+    </a>
   {/if}
 </section>
 
@@ -241,17 +241,10 @@
   .img path {
     fill: var(--tg-theme-hint-color);
   }
-  .detale {
-    display: flex;
-    justify-content: space-between;
-  }
   .btn-block {
     display: flex;
     justify-content: flex-end;
     gap: 8px;
-  }
-  .link-btn {
-    margin-left: auto;
   }
   .description-item-section {
     padding-top: 20px;
@@ -262,6 +255,8 @@
     align-items: center;
     justify-content: center;
     gap: 1em;
-    /* font-size: 1rem; */
+    display: flex;
+    padding: 1rem 0;
+    border-radius: 0.5rem;
   }
 </style>
