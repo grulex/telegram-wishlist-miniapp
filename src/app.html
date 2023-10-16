@@ -12,6 +12,11 @@
 				return btoa(encode)
 			}
 
+			function round(val, d) {
+				const k = Math.pow(10, d || 0);
+				return Math.round(val * k) / k;
+			}
+
 			let tg = window.Telegram.WebApp.initData;
 			tg = base64encode(tg)
 			document.cookie = "tg_init_data="+tg;
