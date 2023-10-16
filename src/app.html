@@ -12,21 +12,12 @@
 				return btoa(encode)
 			}
 
-			function round(val, d) {
-				const k = Math.pow(10, d || 0);
-				return Math.round(val * k) / k;
-			}
-
 			let tg = window.Telegram.WebApp.initData;
 			tg = base64encode(tg)
 			document.cookie = "tg_init_data="+tg;
 			Telegram.WebApp.setHeaderColor('bg_color');
 
 			window.Telegram.WebApp.expand();
-			document.querySelector('.viewport-border')
-					.setAttribute('text', window.innerWidth + ' x ' + round(window.Telegram.WebApp.viewportHeight, 2))
-			document.querySelector('.viewport-stable_border')
-					.setAttribute('text', window.innerWidth + ' x ' + round(window.Telegram.WebApp.viewportStableHeight, 2));
 		</script>
 
 		<style>
