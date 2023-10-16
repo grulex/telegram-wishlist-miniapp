@@ -2,10 +2,13 @@
 import { env } from '$lib/env'
 
 export async function load({cookies}) {
-    const back = env.BACKEND_HOST
-    let resp = await fetch(back + '/api/profile', {
+    let token = cookies.get("tg_init_data");
+    if (env.TG_DEV_INIT_DATA_BASE64) {
+        token = env.TG_DEV_INIT_DATA_BASE64;
+    }
+    let resp = await fetch(env.BACKEND_HOST + '/api/profile', {
         headers: {
-            'authorization': cookies.get('tg_init_data')
+            'authorization': token,
         },
     });
     let profile = await resp.json();
