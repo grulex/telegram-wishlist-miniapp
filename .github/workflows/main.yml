@@ -1,0 +1,17 @@
+name: Remote update execution
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build:
+    name: Redeploy
+    runs-on: ubuntu-latest
+    steps:
+    - name: Docker build and restart on digital ocean
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.SSH_HOST }}
+        username: ${{ secrets.SSH_USER }}
+        key: ${{ secrets.SSH_KEY }}
+        script: cd /sites && mkdir test
