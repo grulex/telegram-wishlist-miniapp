@@ -5,7 +5,6 @@
     export let data;
 
     onMount(() => {
-        window.Telegram.WebApp.expand();
         window.Telegram.WebApp.ready();
         const tgApp = window.Telegram.WebApp;
         const wishlistId = tgApp.initDataUnsafe.start_param;
@@ -16,3 +15,8 @@
         }
     })
 </script>
+
+<main>
+<!--    todo: wishlist skeleton screen-->
+<!--    <section>Loading...</section>-->
+</main>

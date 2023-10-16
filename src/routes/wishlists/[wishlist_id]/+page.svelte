@@ -124,11 +124,15 @@
         </a>
       {/each}
     {:else}
-      <p class="bad-description">You don't have wishes yet</p>
-      <button class="border-button" on:click={newWish}>
-        <AddSvg />
-        Create the First Item
-      </button>
+      {#if isOwner }
+        <p class="bad-description">You don't have wishes yet</p>
+        <button class="border-button" on:click={newWish}>
+          <AddSvg />
+          Create the First Item
+        </button>
+      {:else}
+        <p class="bad-description">There are no wishes in this wishlist yet</p>
+      {/if}
     {/if}
   </section>
 
@@ -186,6 +190,7 @@
   }
   .items-center {
     align-items: center;
+    min-height: 40px;
   }
   .content-between {
     justify-content: space-between;
@@ -327,6 +332,8 @@
   .bad-description {
     text-align: center;
     margin-bottom: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--tg-theme-secondary-bg-color);
   }
   p {
     max-height: 5.3em;
