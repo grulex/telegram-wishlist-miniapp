@@ -22,7 +22,7 @@ export const actions = {
                 is_default: is_default,
             }
         }
-        let req = await fetch(env.BACKEND_HOST+'api/wishlists/'+id, {
+        let req = await fetch(env.BACKEND_HOST+'/api/wishlists/'+id, {
             headers: {
                 'authorization': token,
                 'Content-Type': 'application/json',

@@ -5,7 +5,7 @@ export async function DELETE({ params, cookies }) {
     if (env.TG_DEV_INIT_DATA_BASE64) {
         token = env.TG_DEV_INIT_DATA_BASE64;
     }
-    let req = await fetch(env.BACKEND_HOST+`api/wishlists/${params.wishlist_id}/items/${params.product_id}`, {
+    let req = await fetch(env.BACKEND_HOST+`/api/wishlists/${params.wishlist_id}/items/${params.product_id}`, {
         headers: {
             'authorization': token,
         },
@@ -26,7 +26,7 @@ export async function POST({ params, cookies, request }) {
     }
     const rJson = await request.json()
     if (rJson.action === 'book') {
-        let req = await fetch(env.BACKEND_HOST+`api/wishlists/${params.wishlist_id}/items/${params.product_id}/book`, {
+        let req = await fetch(env.BACKEND_HOST+`/api/wishlists/${params.wishlist_id}/items/${params.product_id}/book`, {
             headers: {
                 'authorization': token,
             },
@@ -39,7 +39,7 @@ export async function POST({ params, cookies, request }) {
         }
         return new Response('Booked', { status: 200 });
     } else if (rJson.action === 'unbook') {
-        let req = await fetch(env.BACKEND_HOST+`api/wishlists/${params.wishlist_id}/items/${params.product_id}/book`, {
+        let req = await fetch(env.BACKEND_HOST+`/api/wishlists/${params.wishlist_id}/items/${params.product_id}/book`, {
             headers: {
                 'authorization': token,
             },
@@ -53,7 +53,7 @@ export async function POST({ params, cookies, request }) {
         return new Response('Unbooked', { status: 200 });
     } else if (rJson.action === 'copy') {
         const targetWishlistId = rJson.target_wishlist_id
-        let req = await fetch(env.BACKEND_HOST+`api/wishlists/${targetWishlistId}/items`, {
+        let req = await fetch(env.BACKEND_HOST+`/api/wishlists/${targetWishlistId}/items`, {
             headers: {
                 'authorization': token,
                 'Content-Type': 'application/json',

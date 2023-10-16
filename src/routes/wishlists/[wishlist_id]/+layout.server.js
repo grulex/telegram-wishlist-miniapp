@@ -10,14 +10,14 @@ export async function load({ params, cookies }) {
         throw error(404, 'Not found');
     }
 
-    let wishlistReq = await fetch(env.BACKEND_HOST+'api/wishlists/'+params.wishlist_id, {
+    let wishlistReq = await fetch(env.BACKEND_HOST+'/api/wishlists/'+params.wishlist_id, {
         headers: {
             'authorization': token,
         },
     });
     let wishlist = await wishlistReq.json()
 
-    let itemsReq = await fetch(env.BACKEND_HOST+'api/wishlists/'+params.wishlist_id+'/items', {
+    let itemsReq = await fetch(env.BACKEND_HOST+'/api/wishlists/'+params.wishlist_id+'/items', {
         headers: {
             'authorization': token,
         },
