@@ -15,8 +15,8 @@ jobs:
         username: ${{ secrets.SSH_USER }}
         key: ${{ secrets.SSH_KEY }}
         port: 22
-        script: cd ${{ secrets.FRONTEND_APP_DIRECTORY }} && \
-          export BACKEND_HOST="${{ secrets.BACKEND_HOST }}" && \
-          export TG_MINIAPP_URL="${{ secrets.TG_MINIAPP_URL }}" && \
+        script: |
+          cd ${{ secrets.FRONTEND_APP_DIRECTORY }}
+          export BACKEND_HOST="${{ secrets.BACKEND_HOST }}"
+          export TG_MINIAPP_URL="${{ secrets.TG_MINIAPP_URL }}"
           sh redeploy.sh
-
