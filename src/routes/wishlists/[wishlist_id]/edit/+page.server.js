@@ -4,9 +4,11 @@ import {env} from "$lib/env.js";
 
 export const actions = {
     default: async ({request, cookies}) => {
-        const back = env.BACKEND_HOST
+        let token = cookies.get("tg_init_data");
+        if (env.TG_DEV_INIT_DATA_BASE64) {
+            token = env.TG_DEV_INIT_DATA_BASE64;
+        }
 
-        await  new Promise(r => setTimeout(r, 1000)); // todo: remove this
         const data = await request.formData();
         let title = data.get('title')
         let description = data.get('description')
@@ -20,9 +22,9 @@ export const actions = {
                 is_default: is_default,
             }
         }
-        let req = await fetch(back+'api/wishlists/'+id, {
+        let req = await fetch(env.BACKEND_HOST+'api/wishlists/'+id, {
             headers: {
-                'authorization': cookies.get('tg_init_data'),
+                'authorization': token,
                 'Content-Type': 'application/json',
             },
             method: 'PUT',
