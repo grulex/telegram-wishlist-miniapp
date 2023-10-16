@@ -15,10 +15,5 @@ jobs:
         username: ${{ secrets.SSH_USER }}
         key: ${{ secrets.SSH_KEY }}
         port: 22
-        script: cd ${{ secrets.FRONTEND_APP_DIRECTORY }} && \
-          docker build -t telegram-wishlist-frontend . && \
-          docker rm -f telegram-wishlist-frontend && \
-          docker run -d --name=telegram-wishlist-frontend --init --restart=always -p 3001:3000 \
-          -e BACKEND_HOST='${{ secrets.BACKEND_HOST }}' \
-          -e TG_MINIAPP_URL='${{ secrets.TG_MINIAPP_URL }}' telegram-wishlist-frontend:latest
+        script: cd ${{ secrets.FRONTEND_APP_DIRECTORY }} && sh redeploy.sh
 
