@@ -5,7 +5,7 @@ import { env } from "$lib/env.js";
 export const actions = {
   create: async ({ request, cookies }) => {
     let token = cookies.get("tg_init_data");
-    if (env.TG_DEV_INIT_DATA_BASE64 !== "") {
+    if (env.TG_DEV_INIT_DATA_BASE64) {
       token = env.TG_DEV_INIT_DATA_BASE64;
     }
 
@@ -29,7 +29,7 @@ export const actions = {
     let req = await fetch(env.BACKEND_HOST + "/api/wishlists/" + wishlist_id + "/items", {
       headers: {
         'authorization': token,
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       method: "POST",
       body: JSON.stringify(jsonRequest),
