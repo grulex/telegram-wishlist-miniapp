@@ -103,6 +103,10 @@
       is_booking_available: true,
     };
   }
+  let action = "create";
+  if (productId) {
+      action = "update";
+  }
 </script>
 
 <section>
@@ -112,7 +116,7 @@
     name="form"
     method="post"
     on:submit|preventDefault={submitForm}
-    action="?/create"
+    action="?/{action}"
   >
     <input type="hidden" name="wishlist_id" value={data.wishlist.wishlist.id} />
     <input type="hidden" name="product_id" value={productId} />
@@ -125,6 +129,7 @@
         readonly={loading}
         name="title"
         placeholder={item.product.title}
+        value="{productId ? item.product.title : ''}"
       />
     </label>
 
@@ -134,7 +139,8 @@
         readonly={loading}
         name="url"
         type="url"
-        value={item.product.url}
+        placeholder="{item.product.url}"
+        value="{productId ? item.product.url : ''}"
       />
     </label>
 
@@ -145,7 +151,7 @@
         aria-multiline="true"
         name="description"
         placeholder={item.product.description}
-      />
+      >{productId ? item.product.description : ''}</textarea>
     </label>
 
     <label class="label-checkbox">
