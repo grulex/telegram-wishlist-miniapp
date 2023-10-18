@@ -7,11 +7,19 @@
     onMount(() => {
         window.Telegram.WebApp.ready();
         const tgApp = window.Telegram.WebApp;
-        const wishlistId = tgApp.initDataUnsafe.start_param;
-        if (wishlistId) {
-            gotoRoute('/wishlists/'+wishlistId)
+        const startParam = tgApp.initDataUnsafe.start_param;
+        if (startParam) {
+            if (startParam[0] === "-") {
+                const routeB64 = startParam.substring(1);
+                const route = atob(routeB64);
+                if (route) {
+                    gotoRoute(route)
+                    return
+                }
+            }
+            gotoRoute("/wishlists/"+startParam)
         } else {
-            gotoRoute('/wishlists/'+data.profile.default_wishlist.id)
+            gotoRoute("/wishlists/"+data.profile.default_wishlist.id)
         }
     })
 </script>
