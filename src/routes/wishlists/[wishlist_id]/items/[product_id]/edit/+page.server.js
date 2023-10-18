@@ -26,7 +26,7 @@ export const actions = {
         description: description,
       },
     };
-    let req = await fetch(env.BACKEND_HOST + "api/wishlists/" + wishlist_id + "/items", {
+    let req = await fetch(env.BACKEND_HOST+'/api/wishlists/' + wishlist_id + "/items", {
       headers: {
         'authorization': token,
         'Content-Type': 'application/json',
