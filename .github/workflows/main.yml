@@ -24,6 +24,7 @@ jobs:
     name: Staging Deploy
     runs-on: ubuntu-latest
     environment: staging
+    needs: [build]
     steps:
     - name: Docker build and restart on digital ocean
       uses: appleboy/ssh-action@master
@@ -34,7 +35,7 @@ jobs:
         port: 22
         script: |
           docker rm -f telegram-wishlist-frontend-staging
-          docker run -d --name=telegram-wishlist-frontend-staging --init --restart=always -p 3001:3000 \
+          docker run -d --name=telegram-wishlist-frontend-staging --init --restart=always -p 3002:3000 \
           -e BACKEND_HOST="${{ secrets.BACKEND_HOST }}" \
           -e TG_MINIAPP_URL="${{ secrets.TG_MINIAPP_URL }}" \
           telegram-wishlist-frontend
@@ -42,6 +43,7 @@ jobs:
     name: Production Deploy
     runs-on: ubuntu-latest
     environment: production
+    needs: [build]
     steps:
     - name: Docker build and restart on digital ocean
       uses: appleboy/ssh-action@master
