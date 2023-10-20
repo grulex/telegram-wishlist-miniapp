@@ -1,10 +1,14 @@
-name: Deploy Production
-on: workflow_dispatch
+name: Deploy
+on:
+  push:
+    branches:
+      - main
 
 jobs:
-  build:
-    name: Redeploy
+  staging-deploy:
+    name: Staging Deploy
     runs-on: ubuntu-latest
+    environment: staging
     steps:
     - name: Docker build and restart on digital ocean
       uses: appleboy/ssh-action@master
