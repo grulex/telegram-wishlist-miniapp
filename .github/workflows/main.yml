@@ -43,7 +43,7 @@ jobs:
     name: Production Deploy
     runs-on: ubuntu-latest
     environment: production
-    needs: [build]
+    needs: [staging-deploy]
     steps:
     - name: Docker build and restart on digital ocean
       uses: appleboy/ssh-action@master
