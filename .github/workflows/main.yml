@@ -53,5 +53,8 @@ jobs:
         key: ${{ secrets.SSH_KEY }}
         port: 22
         script: |
-          echo "${{ secrets.BACKEND_HOST }}"
-          echo "${{ secrets.TG_MINIAPP_URL }}"
+          docker rm -f telegram-wishlist-frontend
+          docker run -d --name=telegram-wishlist-frontend --init --restart=always -p 3001:3000 \
+          -e BACKEND_HOST="${{ secrets.BACKEND_HOST }}" \
+          -e TG_MINIAPP_URL="${{ secrets.TG_MINIAPP_URL }}" \
+          telegram-wishlist-frontend
