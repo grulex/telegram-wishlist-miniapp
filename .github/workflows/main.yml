@@ -9,7 +9,7 @@ jobs:
     name: Build Image
     runs-on: ubuntu-latest
     steps:
-    - name: Docker build and restart on digital ocean
+    - name: Build Image
       uses: appleboy/ssh-action@master
       with:
         host: ${{ secrets.SSH_HOST }}
@@ -26,7 +26,7 @@ jobs:
     environment: staging
     needs: [build]
     steps:
-    - name: Docker build and restart on digital ocean
+    - name: Staging Deploy
       uses: appleboy/ssh-action@master
       with:
         host: ${{ secrets.SSH_HOST }}
@@ -45,7 +45,7 @@ jobs:
     environment: production
     needs: [staging-deploy]
     steps:
-    - name: Docker build and restart on digital ocean
+    - name: Production Deploy
       uses: appleboy/ssh-action@master
       with:
         host: ${{ secrets.SSH_HOST }}
