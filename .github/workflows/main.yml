@@ -1,8 +1,9 @@
-name: Remote update execution
+name: Deploy Production
 on:
   push:
     branches:
       - main
+  workflow_dispatch:
 jobs:
   build:
     name: Redeploy
