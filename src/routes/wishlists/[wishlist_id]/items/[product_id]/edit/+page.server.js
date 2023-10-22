@@ -16,12 +16,24 @@ export const actions = {
     let description = data.get("description");
     let is_booking_available = data.get("is_booking_available") === "on";
 
+    let image = null
+    const imageObj = await data.get("image")
+    if (imageObj.name !== "") {
+      const imageBuffer = await imageObj.arrayBuffer();
+      let buff = new Buffer(imageBuffer);
+      const base64Image = buff.toString("base64");
+      image = {
+        src: base64Image,
+      }
+    }
+
     let jsonRequest = {
       is_booking_available: is_booking_available,
       product: {
         title: title,
         url: url,
         description: description,
+        image: image,
       },
     };
     let req = await fetch(env.BACKEND_HOST+'api/wishlists/' + wishlist_id + "/items", {
@@ -53,6 +65,17 @@ export const actions = {
     let description = data.get("description");
     let is_booking_available = data.get("is_booking_available") === "on";
 
+    let image = null
+    const imageObj = await data.get("image")
+    if (imageObj.name !== "") {
+      const imageBuffer = await imageObj.arrayBuffer();
+      let buff = new Buffer(imageBuffer);
+      const base64Image = buff.toString("base64");
+      image = {
+        src: base64Image,
+      }
+    }
+
     let jsonRequest = {
       is_booking_available: is_booking_available,
       product: {
@@ -60,6 +83,7 @@ export const actions = {
         title: title,
         url: url,
         description: description,
+        image: image,
       },
     };
     let req = await fetch(env.BACKEND_HOST+'api/wishlists/' + wishlist_id + "/items/"+product_id, {

@@ -98,7 +98,7 @@
         price_from: "78000.00",
         description: "Electric car",
         url: "",
-        // image: "",
+        image: "",
       },
       is_booking_available: true,
     };
@@ -106,6 +106,16 @@
   let action = "create";
   if (productId) {
       action = "update";
+  }
+
+  let image = item.product.image?.link;
+  const onFileSelected = (e) => {
+    let imageObj = e.target.files[0];
+    let reader = new FileReader();
+    reader.readAsDataURL(imageObj);
+    reader.onload = e => {
+      image = e.target.result
+    };
   }
 </script>
 
@@ -120,6 +130,9 @@
   >
     <input type="hidden" name="wishlist_id" value={data.wishlist.wishlist.id} />
     <input type="hidden" name="product_id" value={productId} />
+
+    <img alt="product" height="100" src="{image}"/>
+    <input type="file" name="image"  accept=".jpg, .jpeg, .png" on:change={(e)=>onFileSelected(e)} />
 
     <label class="hint-text">
       <p>Title</p>

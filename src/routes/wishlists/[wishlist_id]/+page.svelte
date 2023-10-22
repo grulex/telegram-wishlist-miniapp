@@ -104,7 +104,11 @@
           href="/wishlists/{data.wishlist.wishlist.id}/items/{item.product.id}"
         >
           <div class="img">
-            <PresentSvg />
+            {#if item.product.image?.link}
+              <img alt="product" src={item.product.image.link} />
+            {:else}
+              <PresentSvg />
+            {/if}
           </div>
           <div class="item-text">
             <div class="flex content-between gap-1">
@@ -236,7 +240,7 @@
     overflow: auto;
     padding-top: 1rem;
     display: flex;
-    gap: 1rem;
+    gap: 0.5rem;
     color: var(--tg-theme-text-color);
     border-top: 1px solid var(--tg-theme-secondary-bg-color);
   }

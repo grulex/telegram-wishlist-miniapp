@@ -86,11 +86,24 @@
     await applyAction(result);
     finishLoading();
   }
+
+  let avatar = data.wishlist.wishlist.avatar?.link;
+  const onFileSelected = (e) => {
+    let imageObj = e.target.files[0];
+    let reader = new FileReader();
+    reader.readAsDataURL(imageObj);
+    reader.onload = e => {
+      avatar = e.target.result
+    };
+  }
 </script>
 
 <section>
   <h1>Edit</h1>
   <form name="form" method="post" on:submit|preventDefault={submitForm}>
+    <img class="avatar" src="{avatar}" height="100" alt="Avatar" />
+    <input type="file" name="image"  accept=".jpg, .jpeg, .png" on:change={(e)=>onFileSelected(e)} />
+
     <label class="hint-text">
       <p>Title</p>
       <input

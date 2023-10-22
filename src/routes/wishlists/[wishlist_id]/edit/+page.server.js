@@ -10,16 +10,28 @@ export const actions = {
         }
 
         const data = await request.formData();
-        let title = data.get('title')
-        let description = data.get('description')
-        let is_default = data.get('is_default') === "true"
-        let id = data.get('id')
+        let title = data.get("title")
+        let description = data.get("description")
+        let is_default = data.get("is_default") === "true"
+        let id = data.get("id")
+
+        let avatar = null
+        const imageObj = await data.get("image")
+        if (imageObj.name !== "") {
+            const image = await imageObj.arrayBuffer();
+            let buff = new Buffer(image);
+            const base64Image = buff.toString("base64");
+            avatar = {
+                src: base64Image,
+            }
+        }
 
         let jsonRequest = {
             wishlist: {
                 title: title,
                 description: description,
                 is_default: is_default,
+                avatar: avatar,
             }
         }
         let req = await fetch(env.BACKEND_HOST+'/api/wishlists/'+id, {
