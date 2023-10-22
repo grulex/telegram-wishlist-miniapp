@@ -44,12 +44,21 @@
     finishLoading();
   }
 
+  let titleObj;
   const submitForm = (e) => {
+    titleObj.required = true
+    if (titleObj.value === "") {
+      titleObj.reportValidity()
+      return
+    }
     let form;
     if (e) {
       form = e.currentTarget;
     } else {
       form = document.getElementsByName("form")[0];
+    }
+    if (!form.checkValidity()) {
+      return
     }
     handleSubmit(form);
   };
@@ -138,9 +147,9 @@
       <p>Title</p>
       <input
         maxlength="40"
-        required
         readonly={loading}
         name="title"
+        bind:this={titleObj}
         placeholder={item.product.title}
         value="{productId ? item.product.title : ''}"
       />
@@ -152,7 +161,9 @@
         readonly={loading}
         name="url"
         type="url"
-        placeholder="{item.product.url}"
+        pattern="https://.*"
+        spellcheck="false"
+        placeholder="https://example.com/..."
         value="{productId ? item.product.url : ''}"
       />
     </label>
