@@ -174,7 +174,7 @@
         readonly={loading}
         aria-multiline="true"
         name="description"
-        placeholder={item.product.description}
+        placeholder={item.product.description + "..."}
       >{productId ? item.product.description : ''}</textarea>
     </label>
 
