@@ -122,7 +122,7 @@
       action = "update";
   }
 
-  let image = item.product.image?.link;
+  let image = item.product.image?.['link'];
   const onFileSelected = (e) => {
     let imageObj = e.target.files[0];
     let reader = new FileReader();

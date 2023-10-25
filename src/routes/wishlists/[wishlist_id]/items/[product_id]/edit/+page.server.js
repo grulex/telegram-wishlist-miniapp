@@ -36,7 +36,7 @@ export const actions = {
         image: image,
       },
     };
-    let req = await fetch(env.BACKEND_HOST+'api/wishlists/' + wishlist_id + "/items", {
+    let req = await fetch(env.BACKEND_HOST+'/api/wishlists/' + wishlist_id + "/items", {
       headers: {
         'authorization': token,
         'Content-Type': 'application/json',
@@ -86,7 +86,7 @@ export const actions = {
         image: image,
       },
     };
-    let req = await fetch(env.BACKEND_HOST+'api/wishlists/' + wishlist_id + "/items/"+product_id, {
+    let req = await fetch(env.BACKEND_HOST+'/api/wishlists/' + wishlist_id + "/items/"+product_id, {
       headers: {
         'authorization': token,
         'Content-Type': 'application/json',
