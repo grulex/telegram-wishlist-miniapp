@@ -112,7 +112,9 @@
         price_from: "78000.00",
         description: "Electric car",
         url: "",
-        image: "",
+        image: {
+          link: "https://wishlist.super-app.studio/api/images/dGVsZWdyYW1fYm90OkFnQUNBZ0lBQXhrREFBTkJaVG1mUXhlM1M5Mk8yVmRyY0pMZzVSZ2ZrTW9BQWp6WE1SdnR1ZEZKVGhtT3B3Sk9ibklCQUFNQ0FBTjRBQU13QkE="
+        },
       },
       is_booking_available: true,
     };
@@ -123,7 +125,7 @@
   }
 
   let fileInput;
-  let image = item.product.image?.['link'];
+  let image = item.product.image ? item.product.image['link'] : "https://wishlist.super-app.studio/api/images/dGVsZWdyYW1fYm90OkFnQUNBZ0lBQXhrREFBTkJaVG1mUXhlM1M5Mk8yVmRyY0pMZzVSZ2ZrTW9BQWp6WE1SdnR1ZEZKVGhtT3B3Sk9ibklCQUFNQ0FBTjRBQU13QkE=";
   const onFileSelected = (e) => {
     let imageObj = e.target.files[0];
     let reader = new FileReader();
