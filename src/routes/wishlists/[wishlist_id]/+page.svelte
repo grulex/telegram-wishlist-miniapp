@@ -219,7 +219,10 @@
     gap: 1rem;
   }
   .img {
-    border-radius: 0;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   .share-section {
     display: flex;
