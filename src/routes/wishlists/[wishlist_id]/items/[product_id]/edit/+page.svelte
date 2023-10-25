@@ -87,7 +87,11 @@
       const back = () => {
         mainButton.hide();
         backButton.hide();
-        gotoRoute("/wishlists/" + data.wishlist.wishlist.id);
+        if (data.productId === "new") {
+          gotoRoute("/wishlists/" + data.wishlist.wishlist.id);
+        } else {
+            gotoRoute("/wishlists/" + data.wishlist.wishlist.id + "/items/" + data.productId);
+        }
       };
       backButton.onClick(back);
       window.backButtonFunction = back;

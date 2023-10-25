@@ -20,9 +20,13 @@ const translates = {
         en: "Edit",
         ru: "Изм.",
     },
+    edit_button: {
+        en: "Edit",
+        ru: "Изменить",
+    },
     copy_link: {
-        en: "Copy link",
-        ru: "Копировать ссылку",
+        en: "Copy Link",
+        ru: "Копировать Ссылку",
     },
     link_copied: {
         en: "Link copied to clipboard!",

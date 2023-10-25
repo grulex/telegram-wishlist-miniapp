@@ -8,6 +8,7 @@
   import BsBoxArrowUpRight from "svelte-icons-pack/bs/BsBoxArrowUpRight";
   import Icon from 'svelte-icons-pack/Icon.svelte';
   import BsDownload from "svelte-icons-pack/bs/BsDownload";
+  import BsPencilSquare from "svelte-icons-pack/bs/BsPencilSquare";
 
   /** @type {import('./$types').PageData} */
   export let data;
@@ -21,6 +22,10 @@
   const goBack = () => {
     window.Telegram.WebApp.BackButton.hide();
     gotoRoute("/wishlists/" + data.wishlist.wishlist.id);
+  };
+
+  const goEdit = () => {
+    gotoRoute(`/wishlists/${data.wishlist.wishlist.id}/items/${item.product.id}/edit`);
   };
 
   onMount(() => {
@@ -198,6 +203,10 @@
     {/if}
   {/if}
   {#if isOwner}
+    <button class="no-fill-button flex-end btn-text" on:click={goEdit}>
+      <Icon src={BsPencilSquare} size="25" />
+      {$_('app.edit_button')}
+    </button>
     <button class="no-fill-button flex-end btn-text" on:click={remove}>
       {#if removeInProgress === false}
         <Icon src={BsArchive} size="25" />
