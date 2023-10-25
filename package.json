@@ -18,6 +18,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"dotenv": "^16.3.1"
+		"dotenv": "^16.3.1",
+		"svelte-i18n": "^4.0.0"
 	}
 }

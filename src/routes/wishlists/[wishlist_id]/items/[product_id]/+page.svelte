@@ -5,6 +5,7 @@
   import UnbookSvg from "$lib/svg/UnbookSvg.svelte";
   import BookSvg from "$lib/svg/BookSvg.svelte";
   import CopySvg from "$lib/svg/CopySvg.svelte";
+  import { _ } from "$lib/i18n";
 
   /** @type {import('./$types').PageData} */
   export let data;
@@ -39,7 +40,7 @@
   let copyToMyWishlistInProgress = false;
 
   const remove = async () => {
-    const button = { id: "yes", type: "destructive", text: "Remove" };
+    const button = { id: "yes", type: "destructive", text: $_('app.remove') };
 
     const callback = async (id) => {
       if (id === "yes") {
@@ -54,14 +55,14 @@
     };
 
     await showDialog(
-      "Removing",
-      "Do you want to remove this wish?",
+      $_('app.removing'),
+      $_('app.removing_question'),
       button,
       callback
     );
   };
   const book = async () => {
-    const button = { id: "yes", type: "default", text: "Book!" };
+    const button = { id: "yes", type: "default", text: $_('app.book') };
 
     const callback = async (id) => {
       if (id === "yes") {
@@ -79,14 +80,14 @@
     };
 
     await showDialog(
-      "Booking",
-      "Are you planning to fulfill this wish?",
+      $_('app.booking'),
+      $_('app.booking_question'),
       button,
       callback
     );
   };
   const unbook = async () => {
-    const button = { id: "yes", type: "destructive", text: "Unbook" };
+    const button = { id: "yes", type: "destructive", text: $_('app.unbook') };
 
     const callback = async (id) => {
       if (id === "yes") {
@@ -104,8 +105,8 @@
     };
 
     await showDialog(
-      "Unbooking",
-      "Do you no longer want to fulfill this desire?",
+      $_('app.unbooking'),
+      $_('app.unbooking_question'),
       button,
       callback
     );
@@ -122,7 +123,7 @@
       }),
     });
     if (response.status === 200) {
-      window.Telegram.WebApp.showAlert("Item copied to your wishlist!");
+      window.Telegram.WebApp.showAlert($_('app.wish_copied'));
       await invalidateAll();
     }
     copyToMyWishlistInProgress = false;
@@ -132,7 +133,7 @@
     const params = {
       title: title,
       message: message,
-      buttons: [{ type: "cancel", text: "No" }, button],
+      buttons: [{ type: "cancel" }, button],
     };
     await window.Telegram.WebApp.showPopup(params, callback);
   };
@@ -168,7 +169,7 @@
         {:else}
           <div class="custom-loader" />
         {/if}
-        Unbook
+        {$_('app.unbook')}
       </button>
     {:else if !item.is_booked}
       <button class="no-fill-button flex-end btn-text" on:click={book}>
@@ -177,7 +178,7 @@
         {:else}
           <div class="custom-loader" />
         {/if}
-        Book
+        {$_('app.book')}
       </button>
     {/if}
   {/if}
@@ -188,7 +189,7 @@
       {:else}
         <div class="custom-loader" />
       {/if}
-      Delete
+      {$_('app.remove')}
     </button>
   {:else}
     <button
@@ -200,7 +201,7 @@
       {:else}
         <div class="custom-loader" />
       {/if}
-      Copy
+      {$_('app.copy_wish')}
     </button>
   {/if}
   {#if product.url !== ""}
@@ -214,7 +215,7 @@
           d="M372.149 515.283H85.881c-22.941 0-44.507-8.934-60.727-25.155S.001 452.34.001 429.402V143.134c0-22.94 8.934-44.506 25.154-60.726s37.786-25.154 60.727-25.154h114.507c15.811 0 28.627 12.816 28.627 28.627s-12.816 28.627-28.627 28.627H85.881c-7.647 0-14.835 2.978-20.241 8.384s-8.385 12.595-8.385 20.242v286.268c0 7.647 2.978 14.835 8.385 20.243 5.406 5.405 12.594 8.384 20.241 8.384h286.267c7.647 0 14.835-2.978 20.242-8.386 5.406-5.406 8.384-12.595 8.384-20.242V314.895c0-15.811 12.817-28.626 28.628-28.626s28.628 12.816 28.628 28.626v114.507c0 22.94-8.934 44.505-25.155 60.727-16.221 16.22-37.788 25.154-60.726 25.154zm-171.76-171.762c-7.327 0-14.653-2.794-20.242-8.384-11.179-11.179-11.179-29.306 0-40.485L417.544 57.254H314.896c-15.811 0-28.626-12.816-28.626-28.627S299.085 0 314.896 0h171.761a28.542 28.542 0 0 1 19.997 8.144l.002.002.056.056.017.016.044.044.029.029.032.032.062.062.062.062.031.032.029.029a.62.62 0 0 1 .06.061l.056.057.002.002a28.55 28.55 0 0 1 8.144 19.998v171.761c0 15.811-12.817 28.627-28.628 28.627s-28.626-12.816-28.626-28.627V97.739l-237.4 237.399c-5.585 5.59-12.911 8.383-20.237 8.383z"
         />
       </svg>
-      Go to Wish Link
+      {$_('app.open_wish_link')}
     </a>
   {/if}
 </section>

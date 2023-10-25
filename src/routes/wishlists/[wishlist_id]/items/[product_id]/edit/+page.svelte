@@ -1,6 +1,7 @@
 <script>
   import { goto as gotoRoute, invalidateAll } from "$app/navigation";
   import { applyAction, deserialize } from "$app/forms";
+  import { _ } from "$lib/i18n";
 
   import { onMount } from "svelte";
   export let data;
@@ -69,7 +70,7 @@
       const tgApp = window.Telegram.WebApp;
       mainButton = tgApp.MainButton;
       mainButton.setParams({
-        text: "Save",
+        text: $_('app.save'),
       });
       if (window.mainButtonFunction) {
         mainButton.offClick(window.mainButtonFunction);
@@ -129,7 +130,7 @@
 </script>
 
 <section>
-  <h1>{productId ? "Edit wish" : "Add wish"}</h1>
+  <h1>{productId ? $_('app.edit') : $_('app.add_wish')}</h1>
 
   <form
     name="form"
@@ -144,7 +145,7 @@
     <input type="file" name="image"  accept=".jpg, .jpeg, .png" on:change={(e)=>onFileSelected(e)} />
 
     <label class="hint-text">
-      <p>Title</p>
+      <p>{$_('app.title')}</p>
       <input
         maxlength="40"
         readonly={loading}
@@ -169,7 +170,7 @@
     </label>
 
     <label class="hint-text">
-      <p>Description</p>
+      <p>{$_('app.description')}</p>
       <textarea
         readonly={loading}
         aria-multiline="true"
@@ -179,7 +180,7 @@
     </label>
 
     <label class="label-checkbox">
-      <span class="hint-text">Booking available?</span>
+      <span class="hint-text">{$_('app.booking_available')}?</span>
       <input
         class="checkbox no-visible"
         type="checkbox"

@@ -1,5 +1,6 @@
 <script>
   import { goto as gotoRoute, invalidateAll } from "$app/navigation";
+  import { _ } from "$lib/i18n";
   import { applyAction, deserialize } from "$app/forms";
 
   import { onMount } from "svelte";
@@ -40,7 +41,7 @@
       const tgApp = window.Telegram.WebApp;
       mainButton = tgApp.MainButton;
       mainButton.setParams({
-        text: "Save",
+        text: $_('app.save'),
       });
       if (window.mainButtonFunction) {
         mainButton.offClick(window.mainButtonFunction);
@@ -99,13 +100,13 @@
 </script>
 
 <section>
-  <h1>Edit</h1>
+  <h1>{$_('app.edit')}</h1>
   <form name="form" method="post" on:submit|preventDefault={submitForm}>
     <img class="avatar" src="{avatar}" height="100" alt="Avatar" />
     <input type="file" name="image"  accept=".jpg, .jpeg, .png" on:change={(e)=>onFileSelected(e)} />
 
     <label class="hint-text">
-      <p>Title</p>
+      <p>{$_('app.title')}</p>
       <input
         maxlength="30"
         readonly={loading}
@@ -114,7 +115,7 @@
       />
     </label>
     <label class="hint-text">
-      <p>Description</p>
+      <p>{$_('app.description')}</p>
       <textarea readonly={loading} aria-multiline="true" name="description"
         >{data.wishlist.wishlist.description}</textarea
       >

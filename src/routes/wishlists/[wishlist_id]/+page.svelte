@@ -3,7 +3,7 @@
   import { onMount } from "svelte";
   import ShareSvg from "$lib/svg/ShareSvg.svelte";
   import Copy1Svg from "$lib/svg/Copy1Svg.svelte";
-  import EditSvg from "$lib/svg/EditSvg.svelte";
+  import { _ } from "$lib/i18n";
   import AddSvg from "$lib/svg/AddSvg.svelte";
   import PresentSvg from "$lib/svg/PresentSvg.svelte";
 
@@ -26,7 +26,7 @@
     navigator.clipboard.writeText(
       data.tgAppUrl + `?startapp=${data.wishlist.wishlist.id}`
     );
-    window.Telegram.WebApp.showAlert("Link copied to clipboard!");
+    window.Telegram.WebApp.showAlert($_('app.link_copied'));
   };
   const goMyWishlist = () => {
     if (window.Telegram.WebApp.initDataUnsafe.user?.allows_write_to_pm) {
@@ -60,7 +60,7 @@
 <div class="flex-column">
   <section class="header relative">
     {#if isOwner}
-      <button class="edit-btn absolute" on:click={editWishlist}> Edit </button>
+      <button class="edit-btn absolute" on:click={editWishlist}> {$_('app.edit_link')} </button>
     {/if}
     <div class="flex content-center">
       {#if data.wishlist.wishlist.avatar?.link}
@@ -80,17 +80,17 @@
   <section class="share-section">
     <button class="no-fill-button btn-text" on:click={copyLink}>
       <Copy1Svg />
-      Copy Link
+      {$_('app.copy_link')}
     </button>
     <button class="no-fill-button btn-text" on:click={share}>
       <ShareSvg />
-      Share
+      {$_('app.share')}
     </button>
   </section>
 
   <section class="wishes-section">
     <div class="flex content-between items-center mb-16">
-      <h2>Wishes</h2>
+      <h2>{$_('app.wishes')}</h2>
       {#if isOwner}
         <button class="no-fill-button" on:click={newWish}>
           <AddSvg />
@@ -104,8 +104,8 @@
           href="/wishlists/{data.wishlist.wishlist.id}/items/{item.product.id}"
         >
           <div class="img">
-            {#if item.product.image?.link}
-              <img alt="product" src={item.product.image.link} />
+            {#if (item.product.image?.['link'])}
+              <img alt="product" src={item.product.image['link']} />
             {:else}
               <PresentSvg />
             {/if}
@@ -116,9 +116,9 @@
               {#if item.is_booked}
                 <p class="booked-item">
                   {#if item.is_booked_by_current_user}
-                    <span class="tg-theme-button-color">Booked by you</span>
+                    <span class="tg-theme-button-color">{$_('app.booked_by_you')}</span>
                   {:else}
-                    Booked
+                    {$_('app.booked')}
                   {/if}
                 </p>
               {/if}
@@ -129,13 +129,13 @@
       {/each}
     {:else}
       {#if isOwner }
-        <p class="bad-description">You don't have wishes yet</p>
+        <p class="bad-description">{$_('app.you_didnt_add_wishes')}</p>
         <button class="border-button" on:click={newWish}>
           <AddSvg />
-          Create the First Item
+          {$_('app.create_first_wish')}
         </button>
       {:else}
-        <p class="bad-description">There are no wishes in this wishlist yet</p>
+        <p class="bad-description">{$_('app.didnt_add_wishes')}</p>
       {/if}
     {/if}
   </section>
@@ -145,11 +145,11 @@
   {#if !isOwner}
     {#if isMessagesAllowed}
       <button class="no-fill-button create-button" on:click={goMyWishlist}>
-        Go to my Wishlist
+        {$_('app.go_my_list')}
       </button>
     {:else}
       <button class="no-fill-button create-button" on:click={goMyWishlist}>
-        Create your Wishlist!
+        {$_('app.create_your_list')}
       </button>
     {/if}
   {/if}
