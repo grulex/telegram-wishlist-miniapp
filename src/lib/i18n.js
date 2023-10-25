@@ -114,7 +114,7 @@ const translates = {
     },
     copy_wish: {
         en: "Copy Wish",
-        ru: "Копировать Желание",
+        ru: "Копировать",
     },
     wish_copied: {
         en: "Wish copied to you List!",

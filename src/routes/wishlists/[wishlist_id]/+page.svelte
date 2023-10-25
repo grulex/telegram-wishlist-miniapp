@@ -6,6 +6,9 @@
   import { _ } from "$lib/i18n";
   import AddSvg from "$lib/svg/AddSvg.svelte";
   import PresentSvg from "$lib/svg/PresentSvg.svelte";
+  import Icon from 'svelte-icons-pack/Icon.svelte';
+  import BsFiles from "svelte-icons-pack/bs/BsFiles";
+  import BsUpload from "svelte-icons-pack/bs/BsUpload";
 
   export let data;
   console.log(data);
@@ -79,11 +82,11 @@
 
   <section class="share-section">
     <button class="no-fill-button btn-text" on:click={copyLink}>
-      <Copy1Svg />
+      <Icon src={BsFiles} size="25"/>
       {$_('app.copy_link')}
     </button>
     <button class="no-fill-button btn-text" on:click={share}>
-      <ShareSvg />
+      <Icon src={BsUpload} size="25"/>
       {$_('app.share')}
     </button>
   </section>
