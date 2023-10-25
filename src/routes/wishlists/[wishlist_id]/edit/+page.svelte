@@ -88,6 +88,7 @@
     finishLoading();
   }
 
+  let fileInput;
   let avatar = data.wishlist.wishlist.avatar?.link;
   const onFileSelected = (e) => {
     let imageObj = e.target.files[0];
@@ -102,8 +103,16 @@
 <section>
   <h1>{$_('app.edit')}</h1>
   <form name="form" method="post" on:submit|preventDefault={submitForm}>
-    <img class="avatar" src="{avatar}" height="100" alt="Avatar" />
-    <input type="file" name="image"  accept=".jpg, .jpeg, .png" on:change={(e)=>onFileSelected(e)} />
+    <div class="image-box">
+      <div class="image">
+        <img src="{avatar}" height="100" alt="Avatar" />
+      </div>
+      <button class="upload-button" type="button" disabled={loading} on:click={() => { fileInput.click();}} >
+        Choose new Image...
+      </button>
+    </div>
+
+    <input type="file" class="upload-file" name="image" accept=".jpg, .jpeg, .png" on:change={(e)=>onFileSelected(e)} bind:this={fileInput} />
 
     <label class="hint-text">
       <p>{$_('app.title')}</p>
@@ -145,5 +154,27 @@
   }
   label p {
     margin-left: 4px;
+  }
+  .upload-file {
+    display: none;
+  }
+  .image-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1rem;
+    gap: 1rem;
+  }
+  .image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 1px solid var(--tg-theme-hint-color);
+  }
+  .upload-button {
+    border: none;
+    background: none;
+    color: var(--tg-theme-button-color);
   }
 </style>

@@ -122,6 +122,7 @@
       action = "update";
   }
 
+  let fileInput;
   let image = item.product.image?.['link'];
   const onFileSelected = (e) => {
     let imageObj = e.target.files[0];
@@ -145,8 +146,15 @@
     <input type="hidden" name="wishlist_id" value={data.wishlist.wishlist.id} />
     <input type="hidden" name="product_id" value={productId} />
 
-    <img alt="product" height="100" src="{image}"/>
-    <input type="file" name="image"  accept=".jpg, .jpeg, .png" on:change={(e)=>onFileSelected(e)} />
+    <div class="image-box">
+      <div class="image">
+          <img alt="product" height="100" src="{image}"/>
+      </div>
+      <button class="upload-button" type="button" disabled={loading} on:click={() => { fileInput.click();}} >
+        Choose new Image...
+      </button>
+    </div>
+    <input class="upload-file" type="file" name="image"  accept=".jpg, .jpeg, .png" on:change={(e)=>onFileSelected(e)} bind:this={fileInput} />
 
     <label class="hint-text">
       <p>{$_('app.title')}</p>
@@ -262,5 +270,27 @@
   }
   label span {
     margin-left: 4px;
+  }
+  .upload-file {
+    display: none;
+  }
+  .image-box {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    margin-bottom: 1rem;
+    gap: 1rem;
+  }
+  .image {
+    height: 100px;
+    max-width: 250px;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--tg-theme-hint-color);
+  }
+  .upload-button {
+    border: none;
+    background: none;
+    color: var(--tg-theme-button-color);
   }
 </style>
