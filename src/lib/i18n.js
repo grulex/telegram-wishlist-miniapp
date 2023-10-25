@@ -109,7 +109,7 @@ const translates = {
         ru: "Снятие бронирования",
     },
     unbooking_question: {
-        en: "Are you sure you want to unbook this wish?",
+        en: "Are you sure you want to unbook this wish?\nOther users will be able to book it.",
         ru: "Вы уверены, что хотите снять бронь с этого желания?\nЕго смогут забронировать другие пользователи.",
     },
     copy_wish: {
