@@ -1,10 +1,6 @@
 <script>
   import { onMount } from "svelte";
   import { goto as gotoRoute, invalidateAll } from "$app/navigation";
-  import RemoveSvg from "$lib/svg/RemoveSvg.svelte";
-  import UnbookSvg from "$lib/svg/UnbookSvg.svelte";
-  import BookSvg from "$lib/svg/BookSvg.svelte";
-  import CopySvg from "$lib/svg/CopySvg.svelte";
   import { _ } from "$lib/i18n";
   import BsBagCheck from "svelte-icons-pack/bs/BsBagCheck";
   import BsBagX from "svelte-icons-pack/bs/BsBagX";
@@ -19,6 +15,7 @@
   let item = data.itemsByProductId[data.productId];
   let product = item.product;
   let isOwner = data.wishlist.wishlist.is_my_wishlist;
+  let isBooked = item.is_booked;
   let isBookedByCurrentUser = item.is_booked_by_current_user;
 
   const goBack = () => {
@@ -85,6 +82,7 @@
         if (response.status === 200) {
           await invalidateAll();
           isBookedByCurrentUser = true;
+          isBooked = true;
         }
         bookInProgress = false;
       }
@@ -110,6 +108,7 @@
         if (response.status === 200) {
           await invalidateAll();
           isBookedByCurrentUser = false;
+          isBooked = false;
         }
         unbookInProgress = false;
       }
@@ -117,7 +116,7 @@
 
     await showDialog(
       $_('app.unbooking'),
-      isOwner ? $_('app.unbooking_question_owner') : $_('app.unbooking_question'),
+      isOwner && !isBookedByCurrentUser ? $_('app.unbooking_question_owner') : $_('app.unbooking_question'),
       button,
       callback
     );
@@ -173,7 +172,7 @@
 
 <section class="share-section wrap">
   {#if item.is_booking_available}
-    {#if isBookedByCurrentUser || (item.is_booked && isOwner) }
+    {#if isBookedByCurrentUser || (isBooked && isOwner) }
       <button class="no-fill-button flex-end btn-text" on:click={unbook}>
         {#if unbookInProgress === false}
           <Icon src={BsBagX} size="25" />
@@ -182,7 +181,7 @@
         {/if}
         {$_('app.unbook')}
       </button>
-    {:else if !item.is_booked}
+    {:else if !isBooked}
       <button class="no-fill-button flex-end btn-text" on:click={book}>
         {#if bookInProgress === false}
           <Icon src={BsBagCheck} size="25" />
