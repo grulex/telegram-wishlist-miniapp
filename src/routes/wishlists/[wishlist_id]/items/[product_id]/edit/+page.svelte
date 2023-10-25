@@ -180,7 +180,7 @@
     </label>
 
     <label class="label-checkbox">
-      <span class="hint-text">{$_('app.booking_available')}?</span>
+      <span class="hint-text">{$_('app.booking_available')}</span>
       <input
         class="checkbox no-visible"
         type="checkbox"

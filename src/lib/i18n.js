@@ -100,6 +100,10 @@ const translates = {
         en: "Are you sure you want to book this wish?",
         ru: "Вы уверены, что хотите забронировать это желание?",
     },
+    booking_question_owner: {
+        en: "Are you sure you want to mark this wish as booked?\nYour friends will not be able to book it.",
+        ru: "Вы уверены, что хотите отметить это желание забронированным?\nВаши друзья не смогут его забронировать.",
+    },
     unbook: {
         en: "Unbook",
         ru: "Снять бронь",
@@ -111,6 +115,10 @@ const translates = {
     unbooking_question: {
         en: "Are you sure you want to unbook this wish?\nOther users will be able to book it.",
         ru: "Вы уверены, что хотите снять бронь с этого желания?\nЕго смогут забронировать другие пользователи.",
+    },
+    unbooking_question_owner: {
+        en: "Someone already booked your wish.\nAre you sure you want to unbook it?\nUser will be notified.",
+        ru: "Кто-то уже забронировал ваше желание. Вы уверены, что хотите снять бронь?\nПользователь будет уведомлён об этом.",
     },
     copy_wish: {
         en: "Copy Wish",
@@ -131,6 +139,10 @@ const translates = {
     booking_available: {
         en: "Booking is available",
         ru: "Можно забронировать",
+    },
+    already_booked: {
+        en: "Someone already booked this wish before you",
+        ru: "Кто-то уже забронировал это желание до вас",
     }
 }
 

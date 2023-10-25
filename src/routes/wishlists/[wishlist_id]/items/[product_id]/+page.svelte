@@ -67,6 +67,11 @@
       callback
     );
   };
+
+  const showBookedAlert = async () => {
+    window.Telegram.WebApp.showAlert($_('app.already_booked'));
+  };
+
   const book = async () => {
     const button = { id: "yes", type: "default", text: $_('app.book') };
 
@@ -87,7 +92,7 @@
 
     await showDialog(
       $_('app.booking'),
-      $_('app.booking_question'),
+      isOwner ? $_('app.booking_question_owner') : $_('app.booking_question'),
       button,
       callback
     );
@@ -112,7 +117,7 @@
 
     await showDialog(
       $_('app.unbooking'),
-      $_('app.unbooking_question'),
+      isOwner ? $_('app.unbooking_question_owner') : $_('app.unbooking_question'),
       button,
       callback
     );
@@ -168,7 +173,7 @@
 
 <section class="share-section wrap">
   {#if item.is_booking_available}
-    {#if isBookedByCurrentUser}
+    {#if isBookedByCurrentUser || (item.is_booked && isOwner) }
       <button class="no-fill-button flex-end btn-text" on:click={unbook}>
         {#if unbookInProgress === false}
           <Icon src={BsBagX} size="25" />
@@ -185,6 +190,11 @@
           <div class="custom-loader" />
         {/if}
         {$_('app.book')}
+      </button>
+    {:else}
+      <button class="no-fill-button flex-end btn-text disabled" on:click={showBookedAlert}>
+        <Icon src={BsBagX} size="25" />
+        <i>{$_('app.booked')}</i>
       </button>
     {/if}
   {/if}
