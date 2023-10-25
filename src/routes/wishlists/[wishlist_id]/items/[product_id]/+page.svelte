@@ -79,7 +79,7 @@
         });
         if (response.status === 200) {
           await invalidateAll();
-          goBack();
+          isBookedByCurrentUser = true;
         }
         bookInProgress = false;
       }
@@ -104,7 +104,7 @@
         });
         if (response.status === 200) {
           await invalidateAll();
-          goBack();
+          isBookedByCurrentUser = false;
         }
         unbookInProgress = false;
       }
