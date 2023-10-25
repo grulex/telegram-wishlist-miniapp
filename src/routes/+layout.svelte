@@ -9,7 +9,7 @@
     isOpenedByTelegram = window.Telegram.WebApp.platform !== "unknown";
     let lang = window.Telegram.WebApp.initDataUnsafe.user?.language_code
     if (!lang) {
-      lang = 'ru'
+      lang = 'en'
     }
     setupI18n({ withLocale: lang });
   });
