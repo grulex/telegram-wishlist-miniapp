@@ -1,8 +1,6 @@
 <script>
   import { goto as gotoRoute } from "$app/navigation";
   import { onMount } from "svelte";
-  import ShareSvg from "$lib/svg/ShareSvg.svelte";
-  import Copy1Svg from "$lib/svg/Copy1Svg.svelte";
   import { _ } from "$lib/i18n";
   import AddSvg from "$lib/svg/AddSvg.svelte";
   import PresentSvg from "$lib/svg/PresentSvg.svelte";

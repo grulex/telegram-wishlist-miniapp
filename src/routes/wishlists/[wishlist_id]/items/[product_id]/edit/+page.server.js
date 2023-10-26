@@ -18,10 +18,10 @@ export const actions = {
 
     let image = null
     const imageObj = await data.get("image")
-    if (imageObj.name !== "") {
-      const imageBuffer = await imageObj.arrayBuffer();
-      let buff = new Buffer(imageBuffer);
-      const base64Image = buff.toString("base64");
+    const imageBuffer = await imageObj.arrayBuffer();
+    let buff = new Buffer(imageBuffer);
+    const base64Image = buff.toString("base64");
+    if (base64Image) {
       image = {
         src: base64Image,
       }
@@ -67,10 +67,10 @@ export const actions = {
 
     let image = null
     const imageObj = await data.get("image")
-    if (imageObj.name !== "") {
-      const imageBuffer = await imageObj.arrayBuffer();
-      let buff = new Buffer(imageBuffer);
-      const base64Image = buff.toString("base64");
+    const imageBuffer = await imageObj.arrayBuffer();
+    let buff = new Buffer(imageBuffer);
+    const base64Image = buff.toString("base64");
+    if (base64Image) {
       image = {
         src: base64Image,
       }

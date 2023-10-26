@@ -17,10 +17,10 @@ export const actions = {
 
         let avatar = null
         const imageObj = await data.get("image")
-        if (imageObj.name !== "") {
-            const image = await imageObj.arrayBuffer();
-            let buff = new Buffer(image);
-            const base64Image = buff.toString("base64");
+        const image = await imageObj.arrayBuffer();
+        let buff = new Buffer(image);
+        const base64Image = buff.toString("base64");
+        if (base64Image) {
             avatar = {
                 src: base64Image,
             }
