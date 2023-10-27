@@ -8,9 +8,16 @@
 
   let mainButton = false;
   $: if (mainButton) {
-    window.Telegram.WebApp.MainButton.setParams({
+    mainButton.setParams({
       text: $_('app.save'),
     });
+    if (window.mainButtonFunction) {
+      mainButton.offClick(window.mainButtonFunction);
+    }
+
+    mainButton.onClick(submitForm);
+    window.mainButtonFunction = submitForm;
+    mainButton.show();
   }
 
   let loading = false;
@@ -75,16 +82,6 @@
     if (isTgInitialized) {
       const tgApp = window.Telegram.WebApp;
       mainButton = tgApp.MainButton;
-      mainButton.setParams({
-        text: $_('app.save'),
-      });
-      if (window.mainButtonFunction) {
-        mainButton.offClick(window.mainButtonFunction);
-      }
-
-      mainButton.onClick(submitForm);
-      window.mainButtonFunction = submitForm;
-      mainButton.show();
 
       const backButton = tgApp.BackButton;
       if (window.backButtonFunction) {
