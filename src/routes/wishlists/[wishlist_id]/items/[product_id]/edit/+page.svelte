@@ -7,6 +7,12 @@
   export let data;
 
   let mainButton = false;
+  $: if (mainButton) {
+    window.Telegram.WebApp.MainButton.setParams({
+      text: $_('app.save'),
+    });
+  }
+
   let loading = false;
 
   const startLoading = () => {

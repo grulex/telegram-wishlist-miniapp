@@ -7,6 +7,20 @@ init({
     initialLocale: 'en',
 });
 
+let dict = {
+    en: {
+        app: {
+            loading: "Loading",
+        }
+    },
+    ru: {
+        app: {
+            loading: "Загрузка",
+        }
+    },
+};
+dictionary.set(dict);
+
 const translates = {
     loading: {
         en: "Loading",
@@ -148,21 +162,7 @@ const translates = {
         en: "Someone already booked this wish before you",
         ru: "Кто-то уже забронировал это желание до вас",
     }
-}
-
-let dict = {
-    en: {
-        app: {
-            loading: "Loading",
-        }
-    },
-    ru: {
-        app: {
-            loading: "Загрузка",
-        }
-    },
 };
-dictionary.set(dict);
 
 function setupI18n({ withLocale: _locale } = { withLocale: 'en' }) {
     isLoading = true;
