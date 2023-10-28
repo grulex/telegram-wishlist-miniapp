@@ -127,6 +127,16 @@
       action = "update";
   }
 
+  let descriptionField;
+  const resizeTextarea = () => {
+    descriptionField.style.height = "auto";
+    descriptionField.style.height = descriptionField.scrollHeight + "px";
+    descriptionField.scrollTop = descriptionField.scrollHeight;
+  }
+  $: if (descriptionField) {
+    resizeTextarea();
+  }
+
   let fileInput;
   let image = item.product.image ? item.product.image['link'] : "https://wishlist.super-app.studio/api/images/dGVsZWdyYW1fYm90OkFnQUNBZ0lBQXhrREFBTkJaVG1mUXhlM1M5Mk8yVmRyY0pMZzVSZ2ZrTW9BQWp6WE1SdnR1ZEZKVGhtT3B3Sk9ibklCQUFNQ0FBTjRBQU13QkE=";
   const onFileSelected = (e) => {
@@ -192,6 +202,8 @@
         readonly={loading}
         aria-multiline="true"
         name="description"
+        bind:this={descriptionField}
+        on:input={resizeTextarea}
         placeholder={item.product.description + "..."}
       >{productId ? item.product.description : ''}</textarea>
     </label>

@@ -154,8 +154,8 @@
     await window.Telegram.WebApp.showPopup(params, callback);
   };
 
-  const descriptionLines = product.description.split(/\n|\r\n/g).map((v, i) => {
-    return { text: v, br: "<br>" };
+  const descriptionLines = product.descriptionHtml.split(/\n|\r\n/g).map((v, i) => {
+    return { html: v,};
   });
 </script>
 
@@ -246,9 +246,9 @@
 </section>
 
 <section class="description-item-section">
-  {#if product.description !== ""}
-    {#each descriptionLines as { text }}
-      <p>{text}</p>
+  {#if product.descriptionHtml !== ""}
+    {#each descriptionLines as { html }}
+      <p>{@html html}</p>
     {/each}
   {/if}
 </section>

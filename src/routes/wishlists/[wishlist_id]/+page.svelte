@@ -51,10 +51,10 @@
 
   let isOwner = data.wishlist.wishlist.is_my_wishlist;
 
-  const descriptionLines = data.wishlist.wishlist.description
+  const descriptionLines = data.wishlist.wishlist.descriptionHtml
     .split(/\n|\r\n/g)
     .map((v, i) => {
-      return { text: v };
+      return { html: v };
     });
 </script>
 
@@ -72,8 +72,8 @@
     </div>
     <h1>{data.wishlist.wishlist.title}</h1>
     {#if data.wishlist.wishlist.description !== ""}
-      {#each descriptionLines as { text }}
-        <p>{text}</p>
+      {#each descriptionLines as { html }}
+        <p>{@html html}</p>
       {/each}
     {/if}
   </section>

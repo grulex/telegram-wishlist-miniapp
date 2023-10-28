@@ -101,6 +101,16 @@
       avatar = e.target.result
     };
   }
+
+  let descriptionField;
+  const resizeTextarea = () => {
+      descriptionField.style.height = "auto";
+      descriptionField.style.height = descriptionField.scrollHeight + "px";
+      descriptionField.scrollTop = descriptionField.scrollHeight;
+  }
+  $: if (descriptionField) {
+    resizeTextarea();
+  }
 </script>
 
 <section>
@@ -129,6 +139,7 @@
     <label class="hint-text">
       <p>{$_('app.description')}</p>
       <textarea readonly={loading} aria-multiline="true" name="description"
+                bind:this={descriptionField} on:input={resizeTextarea}
         >{data.wishlist.wishlist.description}</textarea
       >
     </label>

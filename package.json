@@ -19,6 +19,7 @@
 	"type": "module",
 	"dependencies": {
 		"dotenv": "^16.3.1",
+		"sanitize-html": "^2.11.0",
 		"svelte-i18n": "^4.0.0",
 		"svelte-icons-pack": "^2.1.0"
 	}
