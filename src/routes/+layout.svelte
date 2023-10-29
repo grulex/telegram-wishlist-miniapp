@@ -22,6 +22,7 @@
     if (bgColor.getBrightness() < bgSecondaryColor.getBrightness()) {
       document.documentElement.style.setProperty('--tg-theme-bg-color', bgSecondaryColor.toString());
       document.documentElement.style.setProperty('--tg-theme-secondary-bg-color', bgColor.toString());
+      window.Telegram.WebApp.setHeaderColor('secondary_bg_color');
     }
   });
 </script>
