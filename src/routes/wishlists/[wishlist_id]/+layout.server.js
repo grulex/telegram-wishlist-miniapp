@@ -2,7 +2,8 @@ import { error } from '@sveltejs/kit';
 import {env} from "$lib/env.js";
 import {safetySanitizeWithLinks} from "$lib/safety_html.js";
 
-export async function load({ params, cookies }) {
+export async function load({ params, cookies, parent }) {
+    await parent(); // todo? maybe we should not wait for parent? now it for registration, when executing first request
     let token = cookies.get("tg_init_data");
     if (env.TG_DEV_INIT_DATA_BASE64) {
         token = env.TG_DEV_INIT_DATA_BASE64;

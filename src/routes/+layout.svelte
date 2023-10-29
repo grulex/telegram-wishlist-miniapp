@@ -3,6 +3,7 @@
   import DefaultTheme from "./DefaultTheme.svelte";
   import { setupI18n, isLoading, _ } from '$lib/i18n';
   import { onMount } from "svelte";
+  import tinycolor from 'tinycolor2';
 
   let isOpenedByTelegram = false;
   onMount(() => {
@@ -12,6 +13,16 @@
       lang = 'en'
     }
     setupI18n({ withLocale: lang });
+
+    let bgColor = window.getComputedStyle(document.documentElement).getPropertyValue('--tg-theme-bg-color');
+    let bgSecondaryColor = window.getComputedStyle(document.documentElement).getPropertyValue('--tg-theme-secondary-bg-color');
+    bgColor = tinycolor(bgColor);
+    bgSecondaryColor = tinycolor(bgSecondaryColor);
+    console.log(bgColor.getBrightness(), bgSecondaryColor.getBrightness())
+    if (bgColor.getBrightness() < bgSecondaryColor.getBrightness()) {
+      document.documentElement.style.setProperty('--tg-theme-bg-color', bgSecondaryColor.toString());
+      document.documentElement.style.setProperty('--tg-theme-secondary-bg-color', bgColor.toString());
+    }
   });
 </script>
 
