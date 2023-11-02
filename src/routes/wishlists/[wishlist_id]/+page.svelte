@@ -272,7 +272,7 @@
   }
   .list-item .title-item {
     color: var(--tg-theme-text-color);
-    max-height: 1.2em;
+    max-height: 1.5em;
   }
   .description-item {
     color: var(--tg-theme-hint-color);
