@@ -7,6 +7,7 @@
   import Icon from 'svelte-icons-pack/Icon.svelte';
   import BsFiles from "svelte-icons-pack/bs/BsFiles";
   import BsUpload from "svelte-icons-pack/bs/BsUpload";
+  import BsChevronRight from "svelte-icons-pack/bs/BsChevronRight";
 
   export let data;
   console.log(data);
@@ -126,6 +127,7 @@
             </div>
             <p class="description-item">{item.product.description}</p>
           </div>
+          <Icon src={BsChevronRight} size="25" className="chevron-item"/>
         </a>
       {/each}
     {:else}

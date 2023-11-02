@@ -2,8 +2,9 @@
   import { goto as gotoRoute, invalidateAll } from "$app/navigation";
   import { applyAction, deserialize } from "$app/forms";
   import { _ } from "$lib/i18n";
-
   import { onMount } from "svelte";
+  import ImgCompressedInput from "$lib/ImgCompressedInput.svelte";
+
   export let data;
 
   let mainButton = false;
@@ -139,12 +140,11 @@
 
   let fileInput;
   let image = item.product.image ? item.product.image['link'] : "https://wishlist.super-app.studio/api/images/dGVsZWdyYW1fYm90OkFnQUNBZ0lBQXhrREFBTkJaVG1mUXhlM1M5Mk8yVmRyY0pMZzVSZ2ZrTW9BQWp6WE1SdnR1ZEZKVGhtT3B3Sk9ibklCQUFNQ0FBTjRBQU13QkE=";
-  const onFileSelected = (e) => {
-    let imageObj = e.target.files[0];
+  const onFileSelected = (imageObj) => {
     let reader = new FileReader();
     reader.readAsDataURL(imageObj);
     reader.onload = e => {
-      image = e.target.result
+      image = e.target.result;
     };
   }
 </script>
@@ -169,7 +169,7 @@
         Choose new Image...
       </button>
     </div>
-    <input class="upload-file" type="file" name="image"  accept=".jpg, .jpeg, .png" on:change={(e)=>onFileSelected(e)} bind:this={fileInput} />
+    <ImgCompressedInput name="image" onCompressed={onFileSelected} bind:fileInput={fileInput}/>
 
     <label class="hint-text">
       <p>{$_('app.title')}</p>

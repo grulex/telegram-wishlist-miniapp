@@ -18,6 +18,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"compressorjs": "^1.2.1",
 		"dotenv": "^16.3.1",
 		"sanitize-html": "^2.11.0",
 		"svelte-i18n": "^4.0.0",

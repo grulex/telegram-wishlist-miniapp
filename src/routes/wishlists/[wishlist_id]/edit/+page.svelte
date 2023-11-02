@@ -4,6 +4,7 @@
   import { applyAction, deserialize } from "$app/forms";
 
   import { onMount } from "svelte";
+  import ImgCompressedInput from "$lib/ImgCompressedInput.svelte";
   export let data;
 
   let mainButton = false;
@@ -93,8 +94,7 @@
 
   let fileInput;
   let avatar = data.wishlist.wishlist.avatar?.link;
-  const onFileSelected = (e) => {
-    let imageObj = e.target.files[0];
+  const onFileSelected = (imageObj) => {
     let reader = new FileReader();
     reader.readAsDataURL(imageObj);
     reader.onload = e => {
@@ -124,8 +124,7 @@
         Choose new Image...
       </button>
     </div>
-
-    <input type="file" class="upload-file" name="image" accept=".jpg, .jpeg, .png" on:change={(e)=>onFileSelected(e)} bind:this={fileInput} />
+    <ImgCompressedInput name="image" onCompressed={onFileSelected} bind:fileInput={fileInput}/>
 
     <label class="hint-text">
       <p>{$_('app.title')}</p>
@@ -168,9 +167,6 @@
   }
   label p {
     margin-left: 4px;
-  }
-  .upload-file {
-    display: none;
   }
   .image-box {
     display: flex;
