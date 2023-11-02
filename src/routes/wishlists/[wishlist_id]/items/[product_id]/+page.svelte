@@ -265,11 +265,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    min-width: 70px;
+    height: 70px;
   }
   .img img {
-    min-height: 70px;
-    min-width: 70px;
-    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
   }
   .img path {
     fill: var(--tg-theme-hint-color);
