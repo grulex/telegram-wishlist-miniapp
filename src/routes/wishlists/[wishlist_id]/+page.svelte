@@ -8,6 +8,7 @@
   import BsFiles from "svelte-icons-pack/bs/BsFiles";
   import BsUpload from "svelte-icons-pack/bs/BsUpload";
   import BsChevronRight from "svelte-icons-pack/bs/BsChevronRight";
+  import {getMinSize} from "$lib/resizer.js";
 
   export let data;
   console.log(data);
@@ -67,7 +68,7 @@
     <div class="flex content-center">
       {#if data.wishlist.wishlist.avatar?.link}
         <div class="img br-50 wh-100">
-          <img alt="avatar user" src={data.wishlist.wishlist.avatar.link} />
+          <img alt="avatar user" src={getMinSize(data.wishlist.wishlist.avatar.link, data.wishlist.wishlist.avatar.sizes, 100)} />
         </div>
       {/if}
     </div>
@@ -107,7 +108,7 @@
         >
           <div class="img">
             {#if (item.product.image?.['link'])}
-              <img alt="product" src={item.product.image['link']} />
+              <img alt="product" src={getMinSize(item.product.image['link'], item.product.image['sizes'], 100)} />
             {:else}
               <PresentSvg />
             {/if}

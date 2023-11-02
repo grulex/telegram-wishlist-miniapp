@@ -10,6 +10,7 @@
   import BsDownload from "svelte-icons-pack/bs/BsDownload";
   import BsPencilSquare from "svelte-icons-pack/bs/BsPencilSquare";
   import PresentSvg from "$lib/svg/PresentSvg.svelte";
+  import {getMinSize} from "$lib/resizer.js";
 
   /** @type {import('./$types').PageData} */
   export let data;
@@ -163,7 +164,7 @@
   <div class="list-link">
     <div class="img">
       {#if (product.image?.['link'])}
-        <img alt="product" src={item.product.image['link']} />
+        <img alt="product" src={getMinSize(item.product.image['link'], item.product.image['sizes'], 100)} />
       {:else}
         <svg width="50" height="50" viewBox="0 0 512 512">
           <path
@@ -261,11 +262,14 @@
   }
   .img {
     border-radius: 5px;
-    height: 70px;
-    width: 70px;
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+  .img img {
+    min-height: 70px;
+    min-width: 70px;
+    object-fit: cover;
   }
   .img path {
     fill: var(--tg-theme-hint-color);
