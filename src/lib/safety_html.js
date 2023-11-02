@@ -1,7 +1,7 @@
 import sanitizeHtml from 'sanitize-html';
 
 const urlPattern = /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[.\!\/\\w]*))?)/ig;
-const usernamePattern = /(?<=^|\s)(@[\w.]+)(?<!\.)/gi;
+const usernamePattern = /(?<=^|\s)@([\w.]+)(?<!\.)/gi;
 
 // Sanitize all HTML tags and attributes
 // and adding links to URLs
