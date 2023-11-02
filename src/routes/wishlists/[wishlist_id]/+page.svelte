@@ -224,6 +224,9 @@
     justify-content: center;
     align-items: center;
   }
+  .img img {
+    object-fit: cover;
+  }
   .share-section {
     display: flex;
     justify-content: space-between;
