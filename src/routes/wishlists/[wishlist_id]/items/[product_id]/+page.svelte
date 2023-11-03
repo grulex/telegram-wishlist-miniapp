@@ -146,6 +146,19 @@
     copyToMyWishlistInProgress = false;
   };
 
+  const mustPmAccess = (callback) => {
+    const grantAccess = (allowed) => {
+      if (allowed) {
+        callback();
+      }
+    };
+    if (window.Telegram.WebApp.platform === "ios" || window.Telegram.WebApp.platform === "android") {
+      window.Telegram.WebApp.requestWriteAccess(grantAccess);
+    } else {
+      callback();
+    }
+  };
+
   const showDialog = async (title, message, button, callback) => {
     const params = {
       title: title,
@@ -193,7 +206,7 @@
         {$_('app.unbook')}
       </button>
     {:else if !isBooked}
-      <button class="no-fill-button flex-end btn-text" on:click={book}>
+      <button class="no-fill-button flex-end btn-text" on:click={() => { mustPmAccess(book) }}>
         {#if bookInProgress === false}
           <Icon src={BsBagCheck} size="25" />
         {:else}

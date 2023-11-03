@@ -31,17 +31,27 @@
     );
     window.Telegram.WebApp.showAlert($_('app.link_copied'));
   };
+  const mustPmAccess = (callback) => {
+    const grantAccess = (allowed) => {
+      if (allowed) {
+        callback();
+      }
+    };
+    if (window.Telegram.WebApp.platform === "ios" || window.Telegram.WebApp.platform === "android") {
+      window.Telegram.WebApp.requestWriteAccess(grantAccess);
+    } else {
+      callback();
+    }
+  };
   const goMyWishlist = () => {
     if (window.Telegram.WebApp.initDataUnsafe.user?.allows_write_to_pm) {
       gotoRoute(`/wishlists/${data.profile.default_wishlist.id}`);
       return;
     }
-    const goToBot = (allowed) => {
-      if (allowed) {
+    const goToBot = () => {
         window.Telegram.WebApp.openTelegramLink("https://t.me/wishboxbot");
-      }
     };
-    window.Telegram.WebApp.requestWriteAccess(goToBot);
+    mustPmAccess(goToBot);
   };
 
   let isMessagesAllowed = false;
