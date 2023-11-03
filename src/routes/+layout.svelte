@@ -14,16 +14,20 @@
     }
     setupI18n({ withLocale: lang });
 
-    let bgColor = window.getComputedStyle(document.documentElement).getPropertyValue('--tg-theme-bg-color');
-    let bgSecondaryColor = window.getComputedStyle(document.documentElement).getPropertyValue('--tg-theme-secondary-bg-color');
-    bgColor = tinycolor(bgColor);
-    bgSecondaryColor = tinycolor(bgSecondaryColor);
-    console.log(bgColor.getBrightness(), bgSecondaryColor.getBrightness())
-    if (bgColor.getBrightness() < bgSecondaryColor.getBrightness()) {
-      document.documentElement.style.setProperty('--tg-theme-bg-color', bgSecondaryColor.toString());
-      document.documentElement.style.setProperty('--tg-theme-secondary-bg-color', bgColor.toString());
-      window.Telegram.WebApp.setHeaderColor('secondary_bg_color');
-    }
+    const resolveBackgroundColor = () => {
+      let bgColor = window.getComputedStyle(document.documentElement).getPropertyValue('--tg-theme-bg-color');
+      let bgSecondaryColor = window.getComputedStyle(document.documentElement).getPropertyValue('--tg-theme-secondary-bg-color');
+      bgColor = tinycolor(bgColor);
+      bgSecondaryColor = tinycolor(bgSecondaryColor);
+      if (bgColor.getBrightness() < bgSecondaryColor.getBrightness()) {
+        document.documentElement.style.setProperty('--tg-theme-bg-color', bgSecondaryColor.toString());
+        document.documentElement.style.setProperty('--tg-theme-secondary-bg-color', bgColor.toString());
+        window.Telegram.WebApp.setHeaderColor('secondary_bg_color');
+      }
+    };
+    resolveBackgroundColor();
+
+    Telegram.WebApp.onEvent("themeChanged", resolveBackgroundColor);
   });
 </script>
 
