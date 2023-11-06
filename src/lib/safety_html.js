@@ -10,7 +10,7 @@ const safetySanitizeWithLinks = (str) => {
     str = str.replace(urlPattern, '<a href="$1" target="_blank">$1</a>');
 
     // replace usernames for <a> tags
-    str = str.replace(usernamePattern, '<a href="https://t.me/$1">$1</a>');
+    str = str.replace(usernamePattern, '<a href="https://t.me/$1">@$1</a>');
 
     // sanitize html
     str = sanitizeHtml(str, {

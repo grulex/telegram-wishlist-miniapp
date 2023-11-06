@@ -139,8 +139,8 @@ const translates = {
         ru: "Кто-то уже забронировал ваше желание. Вы уверены, что хотите снять бронь?\nПользователь будет уведомлён об этом.",
     },
     copy_wish: {
-        en: "Copy Wish",
-        ru: "Копировать",
+        en: "Want too!",
+        ru: "Тоже хочу!",
     },
     wish_copied: {
         en: "Wish copied to you List!",
