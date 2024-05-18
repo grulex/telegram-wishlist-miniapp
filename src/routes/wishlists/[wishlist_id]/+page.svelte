@@ -11,7 +11,6 @@
   import {getMinSize} from "$lib/resizer.js";
 
   export let data;
-  console.log(data);
 
   let newWish = () =>
     gotoRoute(`/wishlists/${data.wishlist.wishlist.id}/items/new/edit`);
