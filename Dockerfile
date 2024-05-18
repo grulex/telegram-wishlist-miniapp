@@ -15,4 +15,6 @@ COPY package.json .
 
 EXPOSE 3000
 ENV NODE_ENV=production
+ENV BODY_SIZE_LIMIT=20000000
+ENV ADDRESS_HEADER=True-Client-IP
 CMD [ "node", "build"]

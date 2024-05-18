@@ -8,7 +8,7 @@
         window.Telegram.WebApp.ready();
         const tgApp = window.Telegram.WebApp;
         const startParam = tgApp.initDataUnsafe.start_param;
-        if (startParam) {
+        if (startParam && startParam.substring(0, 5) !== "tapps") {
             if (startParam[0] === "-") {
                 const routeB64 = startParam.substring(1);
                 const route = atob(routeB64);
