@@ -7,8 +7,8 @@ export async function load({ cookies, request }) {
         token = env.TG_DEV_INIT_DATA_BASE64;
     }
     // get header Sf-Ipcountry
-    let country = request.headers.get('CF-IPCountry');
-    console.log('country', country);
+    // let country = request.headers.get('CF-IPCountry');
+    // console.log('country', country);
 
     let resp = await fetch(env.BACKEND_HOST + '/api/profile', {
         headers: {
