@@ -20,7 +20,12 @@ Also, you need install Node.js and npm. [Node.js download page](https://nodejs.o
 # copy default env file
 cp .env.example .env
 ```
-you must set TG_MINIAPP_URL after Creating application in BotFather.
+You can set unique `TUNNEL_SUBDOMAIN`, because it might conflict with other users of [localtunnel](https://theboroer.github.io/localtunnel-www/).
+```dotenv
+TUNNEL_SUBDOMAIN=my-unique-wishlist-subdomain
+```
+
+Then you can start application:
 
 ```bash
 # install dependencies
@@ -31,10 +36,14 @@ npm run dev
 ```
 Application will be available on http://localhost:5173
 
-Then you can start http tunnel to your local machine (for example [ngrok](https://ngrok.com/)):
+Also, you can see tunnel url in output
 ```bash
-ngrok http 5173
+  ➜  Local:   http://localhost:5173/
+  ➜  Network: use --host to expose
+  ➜  press h to show help
+  > Tunnel: https://my-unique-wishlist-subdomain.loca.lt
 ```
+You can use this tunnel url in miniapp settings in BotFather.
 
 ### Creating application in [BotFather](https://t.me/BotFather)
 
@@ -44,16 +53,16 @@ To do this, you need to find the father of all bots, the bot BotFather and use t
 then go through the proposed process, specifying all the necessary data.
 Configure menu buttons for your bot in the bot settings
 (`/mybots`-> `your bot name` -> `Bot Settings` -> `Menu Button`)
-as url from ngrok. 
+as url from localtunnel (`https://my-unique-wishlist-subdomain.loca.lt`). 
 
 Also, you need enable **inline mode** (`/mybots`-> `your bot name` -> `Bot Settings` -> `Inline Mode`) 
 — it's important for function "**Share**".
 
 When the bot is created, it is required then to use the command `/newapp` 
 and again go through the procedure of creating another entity - the Telegram Mini Apps application, 
-linking it to the Telegram bot. You can use URL from ngrok as `Web App URL` parameter.
+linking it to the Telegram bot. You can use URL from localtunnel (`https://my-unique-wishlist-subdomain.loca.lt`) as `Web App URL` parameter.
 From now on, the created application will be available via a direct link of the form `https://t.me/{mybot}/{miniapp_short_name}`.
-Set this url as `TG_MINIAPP_URL` in the `.env` file and restart application.
+Set this url as `TG_MINIAPP_URL` in the `.env` file and restart application — it's important for correct working "share" functions.
 
 More info about Mini Apps here: [Telegram Mini Apps](https://core.telegram.org/bots/webapps)
 
