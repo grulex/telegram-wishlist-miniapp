@@ -16,7 +16,6 @@
             // The compression process is asynchronous,
             // which means you have to access the `result` in the `success` hook function.
             success(result) {
-                console.log(result);
                 let file = new File([result], "filename.jpg");
                 let container = new DataTransfer();
                 container.items.add(file);
@@ -24,7 +23,7 @@
                 onCompressed(imageObj);
             },
             error(err) {
-                console.log(err.message);
+                console.error(err.message);
             },
         });
     }
